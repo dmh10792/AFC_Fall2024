@@ -79,5 +79,61 @@ if(person.isStudent && person["age"] > 18) {
 if(person["age"] < 13 || person["age"] > 65)
   console.log("Discount Eligable");
 
+// 21. Create an array named `students` containing three objects, each with properties `name` (string) and `age` (number)
+let students = [
+  {
+    name: "John",
+    age: 38
+  },
+  {
+    name: "Reed",
+    age: 37
+  }
+]
 
+// 22. Access the `name` property of the second object in the `students` array and assign it to a variable `secondStudentName`
+let secondStudentName = students[1]["name"]
+
+// 23. Change the `age` property of the first object in the `students` array to 20
+students[0].age = 20
+
+// 24. Loop through the `students` array and log each student's name to the console
+students.forEach(element => {
+  console.log(element["name"]);
+});
+
+// 25. Write a nested if statement that checks if the first student's age is greater than 18, and if so, checks if the student is also named "John", then logs "Adult John" to the console
+if(students[0]["age"] > 18) {
+
+  if(students[0]["name"] === "John"){
+      console.log("Adult John");
+  }
+
+}
+
+// 26. Create two variables `num1` and `num2`, assign them any numbers, then create a variable `sum` that holds the sum of `num1` and `num2`
+let num1 = 7
+let num2 = 3
+let sum = num1 + num2
+
+// 27. Create a variable `temperature`, write a conditional statement that checks if the temperature is above 30, logs "Hot", if between 15 and 30 logs "Warm", and if below 15 logs "Cold"
+let temperature = 25
+
+if(temperature >30) 
+  console.log("Hot");
+else if(temperature <30 && temperature >15)  
+  console.log("Warm")
+else if(temperature < 15)
+  console.log("Cold")
   
+// 28. Create an array `shoppingList` with the items 'milk', 'bread', 'eggs', then add 'butter' to the list
+let shoppingList = ['milk', 'bread', 'eggs']
+shoppingList.push("butter")
+
+// 29. Create an object `favoriteMovies` with properties `title` (string) and `year` (number). Assign values to these properties.
+let favoriteMovies = {
+  title: "Avengers",
+  year: 2015
+}
+
+// 30. Create a variable `grade`, write a conditional statement that classifies the grade as "A" for 90-100, "B" for 80-89, "C" for 70-79, "D" for 60-69, and "F" for below 60
