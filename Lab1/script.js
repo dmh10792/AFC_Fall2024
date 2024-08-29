@@ -137,3 +137,15 @@ let favoriteMovies = {
 }
 
 // 30. Create a variable `grade`, write a conditional statement that classifies the grade as "A" for 90-100, "B" for 80-89, "C" for 70-79, "D" for 60-69, and "F" for below 60
+let grade = 79
+
+function classifyGrade(g) {
+  if(g >= 90) console.log("The grade is an A.");
+  else if(g >= 80 && g <= 89) console.log("The grade is a B.");
+  else if(g >= 70 && g <= 79) console.log("The grade is a C.");
+  else if(g >= 60 && g <= 69) console.log("The grade is a D.");
+  else if(g < 69) console.log("The grade is a F.");
+  else console.log("Not a valid grade");
+}
+
+classifyGrade(grade);
