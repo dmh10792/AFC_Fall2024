@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Now Hiring</title>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <nav class="container" id="navigation">
+            <a href="../index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="now_hiring.html">Now Hiring</a>
+        </nav>
+        <br>
+
+        <form action="">
+
+            <label>First Name:
+                <input type="text" name="fName" id="fName" minlength="1" maxlength="20" required>
+            </label>
+            <br>
+            <br>
+
+            <label>Last Name:
+                <input type="text" name="lName" id="lName" minlength="1" maxlength="20">
+            </label>
+            <br>
+            <br>
+
+            <label>Address 1:
+                <input type="text" name="address1" id="address1" required>
+            </label>
+            <br>
+            <br>
+
+            <label>Address 2:
+                <input type="text" name="address2" id="address2">
+            </label>
+            <br>
+            <br>
+
+            <label>City:
+                <input type="text" name="city" id="city" maxlength="30" required>
+            </label>
+
+            <label>State:
+                <select name="state" id="state">
+                    <option value="TX">TX</option>
+                    <option value="AZ">AZ</option>
+                    <option value="NC">NC</option>
+                </select>
+             </label>
+             <br>
+             <br>
+
+             <label>Age:
+                <input type="number" name="age" id="age" min="21" max="99" required>
+            </label>
+            <br>
+            <br>
+
+            <label>Phone Number:
+                <input placeholder="123-456-7890" type="tel" name="phone-number" id="phone-number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+            </label>
+            <br>
+            <br>
+
+            <label>Email:
+                <input type="email" name="email" id="email-address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+            </label>
+            <br>
+            <br>
+
+            <label>Password:
+                <input type="password" name="password" id="password" minlength="8" maxlength="12" pattern="/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)$/">
+            </label>
+            <br>
+            <br>
+
+            <label>Are you married?
+                <input type="radio" name="isMarried" id="" value="yes">Yes
+                <input type="radio" name="isMarried" id="" value="no" checked>No
+                <input type="radio" name="isMarried" id=""value="maybe">It's Complicated
+            </label>
+            <br>
+            <br>
+
+            <label>Favorite Colors:
+                <input type="checkbox" name="color1" id="" value="blue">Blue
+                <input type="checkbox" name="color2" id="" value="red">Red
+                <input type="checkbox" name="color3" id="" value="yellow">Yellow
+                <input type="checkbox" name="color4" id="" value="purple">Purple
+                <input type="checkbox" name="color5" id="" value="Orange">Orange
+             </label>
+             <br>
+             <br>
+
+             <!--TextArea-->
+             <label>More Info<br>
+                <textarea name="more-info" id="" cols="50" rows="4" maxlength="30"></textarea>
+             </label>
+             <br>
+             <br>
+
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+        </form>
+        
+        <script src="" async defer></script>
+    </body>
+</html>

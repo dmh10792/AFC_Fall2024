@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Forms</title>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <form action="" method="get">
+
+            <!-- Standard Inputs -->
+            <label>Username:
+                <input placeholder="Enter your username" type="text" name="username" id="username" minlength="3" maxlength="15" required>
+            </label>
+            <br>
+            <br>
+
+            <label>Age:
+                <input type="number" name="age" id="age" min="21" required>
+            </label>
+            <br>
+            <br>
+
+            <label>Password:
+                <input type="password" name="password" id="password">
+            </label>
+            <br>
+            <br>
+
+            <label>Email:
+                <input type="email" name="email" id="email-address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+            </label>
+            <br>
+            <br>
+
+            <!-- Radio Buttons -->
+            <label>Are you married?
+                <input type="radio" name="isMarried" id="" value="yes">Yes
+                <input type="radio" name="isMarried" id="" value="no" checked>No
+                <input type="radio" name="isMarried" id=""value="maybe">It's Complicated
+            </label>
+            <br>
+            <br>
+
+            <label>Are you alive?
+                <input type="radio" name="isAlive" id="" value="yes" checked>Yes
+                <input type="radio" name="isAlive" id="" value="no">No
+                <input type="radio" name="isAlive" id="" value="maybe">It's Complicated
+            </label>
+            <br>
+            <br>
+
+            <!-- Checkboxes -->
+             <label>Favorite Colors:
+                <input type="checkbox" name="color1" id="" value="blue">Blue
+                <input type="checkbox" name="color2" id="" value="red">Red
+                <input type="checkbox" name="color3" id="" value="yellow">Yellow
+             </label>
+             <br>
+             <br>
+
+             <!--TextArea-->
+             <label>Please enter your bio <br>
+                <textarea name="description" id="" cols="50" rows="8"></textarea>
+             </label>
+             <br>
+             <br>
+
+             <!--Select-->
+             <label>State
+                <select name="state" id="">
+                    <option value="tx">Texas</option>
+                    <option value="az">Arizona</option>
+                    <option value="nc">North Carolina</option>
+                </select>
+             </label>
+             <br>
+             <br>
+
+            <button type="submit" >Submit</button>
+        </form>
+        
+        <script src="" async defer></script>
+    </body>
+</html>
