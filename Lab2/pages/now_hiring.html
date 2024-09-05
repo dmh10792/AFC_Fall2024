@@ -2,6 +2,11 @@
 <html>
     <head>
         <title>Now Hiring</title>
+        <!--favicons-->
+        <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+        <link rel="manifest" href="../assets/site.webmanifest">
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -65,19 +70,19 @@
             <br>
 
             <label>Phone Number:
-                <input placeholder="123-456-7890" type="tel" name="phone-number" id="phone-number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                <input placeholder="111-222-3333" type="tel" name="phone-number" id="phone-number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
             </label>
             <br>
             <br>
 
             <label>Email:
-                <input type="email" name="email" id="email-address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                <input type="email" name="email" id="email-address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
             </label>
             <br>
             <br>
 
             <label>Password:
-                <input type="password" name="password" id="password" minlength="8" maxlength="12" pattern="/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)$/">
+                <input type="password" name="password" id="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$" required>
             </label>
             <br>
             <br>
@@ -85,7 +90,7 @@
             <label>Are you married?
                 <input type="radio" name="isMarried" id="" value="yes">Yes
                 <input type="radio" name="isMarried" id="" value="no" checked>No
-                <input type="radio" name="isMarried" id=""value="maybe">It's Complicated
+                <input type="radio" name="isMarried" id=""value="maybe">Separated
             </label>
             <br>
             <br>
