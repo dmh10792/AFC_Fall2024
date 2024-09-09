@@ -1,0 +1,63 @@
+/* use the star selector to remove browser styling */
+* {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #666ceb;
+    text-align: center;
+}
+
+div {
+    margin-bottom: 5px;
+    border: red solid 5px;
+    /* margin: 0 auto; Removes the margin from the top and bottom and centers the div left and right */
+}
+
+/* all p tags inside of div tags */
+div p {
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+    padding: 3px;
+}
+
+p {
+    display: inline-block;
+    font-family: "Mountains of Christmas", serif;
+    font-size:large;
+}
+
+p:nth-child(1) {
+    text-align: center;
+    /* width: 25%; */
+}
+
+#image-container {
+    width: 25%;
+    height: 200px;
+    margin: 0 auto;
+}
+
+/*pseudo classes*/
+#image-container:hover {
+    border-color: black;
+    border-radius: 5%;
+}
+
+img {
+    width: 100%;
+    /* height: 100%; */
+}
+
+/* i tag with fa-solid class*/
+i.fa-solid {
+    font-size: 25px;
+}
+
+/*Any tag with class fa-solid that is in an i tag*/
+i .fa-solid {
+    font-size: 50px;
+}
