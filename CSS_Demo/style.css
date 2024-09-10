@@ -41,7 +41,7 @@ p:nth-child(1) {
     margin: 0 auto;
 }
 
-/*pseudo classes*/
+/*pseudo classes*/ 
 #image-container:hover {
     border-color: black;
     border-radius: 5%;
