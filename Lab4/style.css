@@ -1,0 +1,10 @@
+* {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+#navbar-img {
+    width: 32px;
+    height: 32px;
+}
