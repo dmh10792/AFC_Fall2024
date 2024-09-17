@@ -1,10 +1,4 @@
-* {
-    border: none;
-    margin: 0;
-    padding: 0;
-}
 
-#navbar-img {
-    width: 32px;
-    height: 32px;
+.navbar-custom {
+    border: black solid 2px; /*adding a border to surround the nav bar*/
 }
