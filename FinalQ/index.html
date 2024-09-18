@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final</title>
+</head>
+
+<body>
+
+    <form action="">
+
+        <label>Age:
+            <input type="text" name="age" id="age">
+            <button type="submit">Submit</button>
+        </label>
+        
+    </form>
+    
+    <script>
+        let button = document.querySelector("button");
+        let input = document.querySelector("input");
+        button.addEventListener("click", (event) => {
+            let age = input.value;
+            if(age <= 18) {
+                alert("Not Greater Than 18");
+            }
+        });
+    </script>
+</body>
+
+</html>

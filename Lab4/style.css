@@ -1,4 +1,44 @@
-
+/*
+    Site Wide
+*/
 .navbar-custom {
     border: black solid 2px; /*adding a border to surround the nav bar*/
+    margin-bottom: 5px; /*putting some margin below it to make it look better with page content */
 }
+
+.navbar-custom, h1 {
+    font-family: "Mountains of Christmas", system-ui;
+}
+
+body {
+    margin: 0px;
+    background-image: url("assets/background.webp");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+/*
+    Landing Page
+*/
+#landing-text {
+    padding-top: 200px;/*Move the text down to be level with image*/
+}
+
+#landing-text>h1 , #landing-text>h3 {
+    font-size: 4em; /*Make the text bigger*/
+}
+
+#landing-image {
+    padding-top: 50px;/*push it down some*/
+}
+
+/*
+    Menu Page
+*/
+.card {
+    margin-top: 300px;/*get it closer to the center of the page*/
+}
+
+/*
+    Now Hiring
+*/
