@@ -46,102 +46,107 @@
             </div>
         </nav>
 
-        <form action="">
+        <div class="container" id="hiring-form-container">
+            <form class="text-center" method="get">
 
-            <label>First Name:
-                <input type="text" name="fName" id="fName" minlength="1" maxlength="20" required>
-            </label>
-            <br>
-            <br>
+                <div class="row">
+                    <label class="form-label col-md-4">First Name:
+                        <input type="text" class="form-control" name="fName" id="fName" minlength="1" maxlength="20" required>
+                    </label>
+        
+                    <label class="form-label col-md-4">Last Name:
+                        <input type="text" class="form-control" name="lName" id="lName" minlength="1" maxlength="20">
+                    </label>
 
-            <label>Last Name:
-                <input type="text" name="lName" id="lName" minlength="1" maxlength="20">
-            </label>
-            <br>
-            <br>
+                    <label class="form-label col-md-4">Phone Number: <!--pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"-->
+                        <input placeholder="111-222-3333" type="tel" class="form-control" name="phone-number" id="phone-number" >
+                    </label>
+                </div>
 
-            <label>Address 1:
-                <input type="text" name="address1" id="address1" required>
-            </label>
-            <br>
-            <br>
+                <div class="row">
+                    <label class="form-label">Address 1:
+                        <input type="text" class="form-control" name="address1" id="address1" required>
+                    </label>
+                </div>
 
-            <label>Address 2:
-                <input type="text" name="address2" id="address2">
-            </label>
-            <br>
-            <br>
+                <div class="row">
+                    <label class="form-label">Address 2:
+                        <input type="text" class="form-control" name="address2" id="address2">
+                    </label>
+                </div>
 
-            <label>City:
-                <input type="text" name="city" id="city" maxlength="30" required>
-            </label>
+                <div class="row">
+                    <label class="form-label col-md-3">City:
+                        <input type="text" class="form-control" name="city" id="city" maxlength="30" required>
+                    </label>
+                    <label class="form-label col-md-1">State:
+                        <select class="form-control" name="state" id="state">
+                            <option value="TX">TX</option>
+                            <option value="AZ">AZ</option>
+                            <option value="NC">NC</option>
+                        </select>
+                     </label>
+                     <label class="form-label col-md-2">Zip:
+                        <input type="text" class="form-control" name="zip" id="zip" maxlength="5" required>
+                    </label>
+                    <label class="form-label col-md-2">Age:
+                        <input type="number" class="form-control" name="age" id="age" required>
+                    </label>
+                    <label class="col-md-4 form-check-label" id="relationship-container">
+                        <label class="form-check-label">Married
+                            <input class="form-check-input" type="radio" name="isMarried" value="married">
+                        </label>
+                        <label class="form-check-label">Single
+                            <input class="form-check-input" type="radio" name="isMarried" value="single" checked>
+                        </label>
+                        <label class="form-check-label">Complicated
+                            <input class="form-check-input" type="radio" name="isMarried" value="complicated">
+                        </label>
+                    </label>
+                </div>
 
-            <label>State:
-                <select name="state" id="state">
-                    <option value="TX">TX</option>
-                    <option value="AZ">AZ</option>
-                    <option value="NC">NC</option>
-                </select>
-             </label>
-             <br>
-             <br>
+                <div class="row">
+                    <label class="form-label col-md-3">Email:
+                        <input type="email" name="email" class="form-control" id="email-address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                    </label>
+        
+                    <label class="form-label col-md-3">Password:
+                        <input type="password" name="password" class="form-control" id="password" required>
+                    </label>
+                </div>
+                    
+                <div class="row">
+                    <!--TextArea-->
+                    <label class="form-label" id="more-info-label">
+                        <textarea name="more-info" id="more-info" cols="50" rows="4" placeholder="Enter more information about yourself (300 character max)."></textarea>
+                    </label>
+                </div>
+                
+                <div class="row">
+                    <label class="form-label">Favorite Colors:
+                        <input type="checkbox"  class="form-check-input" name="color1" value="blue">Blue
+                        <input type="checkbox"  class="form-check-input" name="color2" value="red">Red
+                        <input type="checkbox"  class="form-check-input" name="color3" value="yellow">Yellow
+                        <input type="checkbox"  class="form-check-input" name="color4" value="purple">Purple
+                        <input type="checkbox"  class="form-check-input" name="color5" value="Orange">Orange
+                     </label>
+                </div>
 
-             <label>Age:
-                <input type="number" name="age" id="age" min="21" max="99" required>
-            </label>
-            <br>
-            <br>
+                <div class="row">
+                    <div class="col-md-5"></div>
+                    <button type="submit" class="btn btn-success col-md-1">Submit</button>
+                    <button type="reset" class="btn btn-danger col-md-1">Reset</button>
+                    <div class="col-md-5"></div>
+                </div>
+                
+            </form>
+        </div>
 
-            <label>Phone Number:
-                <input placeholder="111-222-3333" type="tel" name="phone-number" id="phone-number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
-            </label>
-            <br>
-            <br>
-
-            <label>Email:
-                <input type="email" name="email" id="email-address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
-            </label>
-            <br>
-            <br>
-
-            <label>Password:
-                <input type="password" name="password" id="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$" required>
-            </label>
-            <br>
-            <br>
-
-            <label>Are you married?
-                <input type="radio" name="isMarried" id="" value="yes">Yes
-                <input type="radio" name="isMarried" id="" value="no" checked>No
-                <input type="radio" name="isMarried" id=""value="maybe">Separated
-            </label>
-            <br>
-            <br>
-
-            <label>Favorite Colors:
-                <input type="checkbox" name="color1" id="" value="blue">Blue
-                <input type="checkbox" name="color2" id="" value="red">Red
-                <input type="checkbox" name="color3" id="" value="yellow">Yellow
-                <input type="checkbox" name="color4" id="" value="purple">Purple
-                <input type="checkbox" name="color5" id="" value="Orange">Orange
-             </label>
-             <br>
-             <br>
-
-             <!--TextArea-->
-             <label>More Info<br>
-                <textarea name="more-info" id="" cols="50" rows="4" maxlength="30"></textarea>
-             </label>
-             <br>
-             <br>
-
-            <button type="submit">Submit</button>
-            <button type="reset">Reset</button>
-        </form>
+        
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-        <script src="script.js"></script>
+        <script src="../script.js"></script>
     </body>
 </html>

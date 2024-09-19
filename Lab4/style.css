@@ -10,12 +10,13 @@
     font-family: "Mountains of Christmas", system-ui;
 }
 
-body {
+body {/*Shape the body*/
     margin: 0px;
     background-image: url("assets/background.webp");
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: 120%;
 }
+
 
 /*
     Landing Page
@@ -36,9 +37,39 @@ body {
     Menu Page
 */
 .card {
-    margin-top: 300px;/*get it closer to the center of the page*/
+    margin-top: 200px;/*get it closer to the center of the page*/
+    box-shadow: 5px 5px  black;
 }
+
+#card-text {/*Spacing the text out some*/
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+
+.fa-money-check-dollar {/*Just spacing*/
+    padding: 3px 5px 0px 0px;
+}
+
 
 /*
     Now Hiring
 */
+#hiring-form-container {/*Adjusting the form to look the way I want*/
+    background-color: rgba(46, 222, 125, 0.531);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+#more-info-label, #more-info {/*Making it take up the whole row*/
+    display: block;
+    width: 100%;
+}
+
+#relationship-container {/*Spacing*/
+    padding: 30px 5px 0px 5px;
+}
+
+.form-check-input {
+    margin: 5px;
+}
