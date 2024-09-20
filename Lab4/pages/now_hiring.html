@@ -58,8 +58,8 @@
                         <input type="text" class="form-control" name="lName" id="lName" minlength="1" maxlength="20">
                     </label>
 
-                    <label class="form-label col-md-4">Phone Number: <!--pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"-->
-                        <input placeholder="111-222-3333" type="tel" class="form-control" name="phone-number" id="phone-number" >
+                    <label class="form-label col-md-4">Phone Number: 
+                        <input type="tel" class="form-control" name="phone-number" id="phone-number">
                     </label>
                 </div>
 
@@ -90,7 +90,7 @@
                         <input type="text" class="form-control" name="zip" id="zip" maxlength="5" required>
                     </label>
                     <label class="form-label col-md-2">Age:
-                        <input type="number" class="form-control" name="age" id="age" required>
+                        <input type="number" class="form-control" name="age" id="age">
                     </label>
                     <label class="col-md-4 form-check-label" id="relationship-container">
                         <label class="form-check-label">Married
@@ -118,17 +118,23 @@
                 <div class="row">
                     <!--TextArea-->
                     <label class="form-label" id="more-info-label">
-                        <textarea name="more-info" id="more-info" cols="50" rows="4" placeholder="Enter more information about yourself (300 character max)."></textarea>
+                        <textarea name="more-info" id="more-info" ></textarea>
                     </label>
                 </div>
                 
                 <div class="row">
-                    <label class="form-label">Favorite Colors:
+                    <label class="form-label col-md-8">Favorite Colors:
                         <input type="checkbox"  class="form-check-input" name="color1" value="blue">Blue
                         <input type="checkbox"  class="form-check-input" name="color2" value="red">Red
                         <input type="checkbox"  class="form-check-input" name="color3" value="yellow">Yellow
                         <input type="checkbox"  class="form-check-input" name="color4" value="purple">Purple
                         <input type="checkbox"  class="form-check-input" name="color5" value="Orange">Orange
+                     </label>
+
+                     <label class="col-md-4">
+                        <h6 id="character-counter">
+                            30 characters left.
+                        </h6>
                      </label>
                 </div>
 
