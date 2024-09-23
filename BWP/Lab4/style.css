@@ -21,7 +21,7 @@ body {/*Shape the body*/
     margin: 0px;
     background-image: url("assets/background.webp");
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
 }
 
 
