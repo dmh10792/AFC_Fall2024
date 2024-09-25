@@ -1,10 +1,14 @@
-
+import Greeting from "./components/Greeting";
+import UserCard from "./components/UserCard";
 
 const App = () => {
   return (
-    <>
-      <h1>My first component.</h1>
-    </>
+    <div>
+      <Greeting name="Mike"/>
+      <UserCard name="Bob" age="30"/>
+      <UserCard name="Charlie" age="35"/>
+      <UserCard name="Alice" age="25"/>
+    </div>
   );
 };
 
