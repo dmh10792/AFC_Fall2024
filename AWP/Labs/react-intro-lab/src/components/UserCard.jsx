@@ -1,8 +1,7 @@
 
 
 const UserCard = (props) => {
-    let {name} = props;
-    let {age} = props;
+    let {name, age} = props;
 
     return (
         <div style={{border: "solid black 3px", padding: "10px", marginBottom: "10px" }}>
