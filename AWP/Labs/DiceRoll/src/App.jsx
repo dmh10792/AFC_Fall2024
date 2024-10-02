@@ -24,7 +24,7 @@ function App() {
     let newNum2 = randomNumGenerator();
     setNum2(newNum2);
 
-    if(newNum1 ==1 && newNum2 ==1) {
+    if(newNum1 ==1 && newNum2 ==1) {//snake eyes easter egg trigger
       setShowSnakeEyes(true);
     } else {
       setShowSnakeEyes(false);
