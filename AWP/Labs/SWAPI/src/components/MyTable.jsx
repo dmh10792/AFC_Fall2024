@@ -1,6 +1,6 @@
+import './MyTable'
 
-
-const MyTable = () => {
+const MyTable = ({rows}) => {
 
     return (
         <>
@@ -14,7 +14,7 @@ const MyTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    {rows}
                 </tbody>
             </table>
         </>

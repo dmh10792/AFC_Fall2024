@@ -13,7 +13,7 @@ function App() {
   const handleSubmit = () => {
     setShowTable(true);
     getData();
-    console.log(tableRows)
+    //console.log(tableRows)
   }
 
   const handleReset = () => {
@@ -24,7 +24,20 @@ function App() {
   const getData = () => {
     axios
       .get(endpoint)
-      .then(response => setTableRows(response.data.results))
+      .then(response => {
+        let count = -1;
+        let rowArray = response.data.results.map((char) => {
+          count++;
+          return (
+          <tr key={count}>
+            <td>{char.name}</td>
+            <td>{char.height} cm</td>
+            <td>{char.hair_color}</td>
+            <td>{char.gender}</td>
+          </tr>)
+        })
+        setTableRows(rowArray);
+      })
       .catch((error) => {
         console.error("Error: ", error.message);
       });
@@ -39,7 +52,7 @@ function App() {
         <button id='resetButton' onClick={handleReset}>Reset</button>
       </div>
 
-      {showTable && <MyTable/>}
+      {showTable && <MyTable rows={tableRows}/>}
     </>
   )
 }

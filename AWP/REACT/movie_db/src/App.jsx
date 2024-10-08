@@ -34,7 +34,6 @@ function App() {
     axios
       .request(options)
       .then(response =>{
-        
         let movieArray = response.data.results.map((movie) => {
           return <MovieCard key={movie.id} movie={movie}/> // the ".map" maps the returned component to the 
         })
