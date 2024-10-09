@@ -1,1 +1,26 @@
+table {
+    border-style: solid;
+    border-collapse: collapse;
+    width: 700px;
 
+}
+
+thead {
+    background-color: rgba(255, 0, 0, 0.598);
+    font-weight: bolder;
+}
+
+th {
+    padding:  0 0.5rem;
+    border: 1px solid white;
+}
+
+td {
+    padding: 0 0.5rem;
+    border: 1px solid white;
+    text-align: left;
+}
+
+.oddRow {
+    background-color: rgba(128, 128, 128, 0.598);
+}

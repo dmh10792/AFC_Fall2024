@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import MyTable from './components/MyTable';
 import axios from 'axios'
@@ -13,7 +13,6 @@ function App() {
   const handleSubmit = () => {
     setShowTable(true);
     getData();
-    //console.log(tableRows)
   }
 
   const handleReset = () => {
@@ -26,10 +25,19 @@ function App() {
       .get(endpoint)
       .then(response => {
         let count = -1;
+        let className = "";
         let rowArray = response.data.results.map((char) => {
+
           count++;
+
+          if(count%2 != 0) {
+            className = "oddRow";
+          } else {
+            className = "evenRow";
+          }
+
           return (
-          <tr key={count}>
+          <tr key={count} className={className}>
             <td>{char.name}</td>
             <td>{char.height} cm</td>
             <td>{char.hair_color}</td>

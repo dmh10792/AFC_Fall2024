@@ -1,4 +1,5 @@
-import './MyTable'
+import { useEffect } from 'react';
+import './MyTable.css'
 
 const MyTable = ({rows}) => {
 
