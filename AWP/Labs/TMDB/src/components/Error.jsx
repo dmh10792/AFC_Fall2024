@@ -1,10 +1,13 @@
-
+import "./Error.css"
 
 const Error = () => {
 
     return (
         <>
-            <h1>Error</h1>
+            <div id="errorContainer">
+                <img src="/src/assets/error.webp" alt="Error image" />
+                <h1>Error Loading Content</h1>
+            </div>
         </>
     )
 }

@@ -1,10 +1,10 @@
 
 
-const Results = () => {
+const Results = ({cards} = props) => {
 
     return (
         <>
-            <h1>Results</h1>
+            {cards}
         </>
     )
 }

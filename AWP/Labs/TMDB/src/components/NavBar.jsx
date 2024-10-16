@@ -7,7 +7,11 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import MovieCard from './MovieCard';
+import axios from 'axios'
+import './NavBar.css';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -51,22 +55,82 @@ const Search = styled('div')(({ theme }) => ({
     },
   }));  
 
-const NavBar = () => {
+const NavBar = ({setCards}) => {
+
+  const { VITE_TMDB_API_TOKEN } = process.env;//desctructuring the token from the process
+
+  const baseURL = "https://api.themoviedb.org/3";
+  const nowPlayingRoute = "movie/now_playing";
+  const searchRoute = "search/";
+
+
+  const handleNowPlaying = () => {
+
+    let endpoint = `${baseURL}/${nowPlayingRoute}`;
+
+    const options = {
+      method: 'GET',
+      url: endpoint,
+      params: {language: 'en-US', page: '1'},
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${VITE_TMDB_API_TOKEN}`
+      }
+    };
+
+    axios
+      .request(options)
+      .then(response =>{
+        let movieArray = response.data.results.map((movie) => {
+          return <MovieCard key={movie.id} movie={movie}/> // the ".map" maps the returned component to the 
+        });
+        setCards(movieArray);
+      })
+      .catch(error => console.log(error.message));
+
+  }
+
+  const handleSearch = () => {//gotta get the text entered into the searchbox
+    let endpoint = `${baseURL}/${searchRoute}`;
+
+    const options = {
+      method: 'GET',
+      url: endpoint,
+      params: {language: 'en-US', page: '1'},
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${VITE_TMDB_API_TOKEN}`
+      }
+    };
+
+    axios
+      .request(options)
+      .then(response =>{
+        let movieArray = response.data.results.map((movie) => {
+          return <MovieCard key={movie.id} movie={movie}/> // the ".map" maps the returned component to the 
+        });
+        setCards(movieArray);
+      })
+      .catch(error => console.log(error.message));
+  }
+
 
     return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
 
-          <h5>Desmond's <br/> Movie  <br/> Project </h5> 
+          <h5>Desmond's<br/>Movie<br/>Project</h5> 
           <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
+            disableRipple
+            onClick={handleNowPlaying}
           >
-            <Link to="/results">Results</Link>
+            <Link className="nowPlayingLink" to="/results" >Now Playing</Link>
           </IconButton>
           <Typography
             variant="h6"
@@ -77,14 +141,12 @@ const NavBar = () => {
             
           </Typography>
           <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
+          <Button variant="outlined" color="inherit" id="searchButton" onClick={handleSearch}>Search</Button>
         </Toolbar>
       </AppBar>
     </Box>

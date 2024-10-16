@@ -1,0 +1,9 @@
+.nowPlayingLink {
+    text-decoration: none;
+    margin-left: 30px;
+    color: black;
+}
+
+#searchButton {
+    margin-left: 10px;
+}

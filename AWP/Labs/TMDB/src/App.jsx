@@ -5,32 +5,25 @@ import {BrowserRouter as Router,  Route, Routes, Link} from 'react-router-dom';
 import Results from "./components/Results"
 import Error from "./components/Error"
 import NavBar from "./components/NavBar"
+import Home from "./components/Home"
 
 //CSS
 import './App.css'
+import Theme from './components/ui/Theme';
 
 function App() {
-
-  const { VITE_TMDB_API_TOKEN } = process.env;//desctructuring the token from the process
-
-  const baseURL = "https://api.themoviedb.org/3";
-
-  //may need to move these to the individual components
-  const nowPlayingRoute = "movie/now_playing";
-  const searchRoute = "search/";
-
-
+  const [cards, setCards] = useState([]);
   return (
     <>
       <Router basename='/'>
         <div className="App">
-          
-        <NavBar/>
-
-
+        <Theme>
+          <NavBar setCards={setCards}/>
+        </Theme>  
           <div className="container">
             <Routes>
-              <Route path="/results" element={<Results/>}/>
+              <Route path="/" element={<Home/>}></Route>
+              <Route path="/results" element={<Results cards={cards}/>}/>
               <Route path="/error" element={<Error/>}/>
             </Routes>
           </div>
