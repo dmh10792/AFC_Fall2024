@@ -4,6 +4,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import { useEffect } from 'react';
 import "./MovieCard.css"
 
 
@@ -11,14 +12,14 @@ const MovieCard = ({movie}) => {
 
     const theme = useTheme();
 
-    const altImage = "../assets/noImage.jpg";
-
-    // const determineImage = () => {
-      
-    //   const imageURL =  movie.poster_path ==null ? altImage : `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
-      
-    // }
-
+    const altImage = "/src/assets/noImage.gif";
+    const imageURL = () => {
+      if(movie.poster_path != null){
+        return `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
+      } else {
+        return `${altImage}`;
+      }
+    }
 
     return ( 
       <Card sx={{ display: 'inline-flex', width: "500px", height: "280px", margin: "10px"}}>
@@ -26,7 +27,7 @@ const MovieCard = ({movie}) => {
         <CardMedia
                 component="img"
                 sx={{ width: 151 }}
-                image={movie.poster_path ==null ? altImage : `https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                image={imageURL()}
                 alt={movie.title}
               />
 

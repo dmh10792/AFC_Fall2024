@@ -1,12 +1,12 @@
 import "./Error.css"
 
-const Error = () => {
+const Error = ({message}) => {
 
     return (
         <>
             <div id="errorContainer">
                 <img src="/src/assets/error.webp" alt="Error image" />
-                <h1>Error Loading Content</h1>
+                <h1>{message}</h1>
             </div>
         </>
     )

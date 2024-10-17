@@ -13,18 +13,19 @@ import Theme from './components/ui/Theme';
 
 function App() {
   const [cards, setCards] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
   return (
     <>
       <Router basename='/'>
         <div className="App">
         <Theme>
-          <NavBar setCards={setCards}/>
+          <NavBar setCards={setCards} setErrorMessage={setErrorMessage}/>
         </Theme>  
           <div className="container">
             <Routes>
               <Route path="/" element={<Home/>}></Route>
               <Route path="/results" element={<Results cards={cards}/>}/>
-              <Route path="/error" element={<Error/>}/>
+              <Route path="/error" element={<Error message={errorMessage}/>}/>
             </Routes>
           </div>
         </div>

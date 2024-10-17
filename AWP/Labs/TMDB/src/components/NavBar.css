@@ -4,6 +4,12 @@
     color: black;
 }
 
+.pageLink {
+    text-decoration: none;
+    color: black;
+}
+
 #searchButton {
     margin-left: 10px;
+    text-align: left;
 }
