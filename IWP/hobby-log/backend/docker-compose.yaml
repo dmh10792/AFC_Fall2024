@@ -1,0 +1,17 @@
+services:
+  postgres-db:
+    container_name: hobby_jpa
+    image: postgres # use latest official postgres version
+    restart: always
+    environment:
+      POSTGRES_USER: hobby_dev
+      POSTGRES_PASSWORD: hobby_devpw
+      POSTGRES_DB: hobby_jpa
+      POSTGRES_HOST_AUTH_METHOD: password
+    ports:
+      - "5438:5432"
+
+volumes:
+  postgresql_data:
+    driver: local
+

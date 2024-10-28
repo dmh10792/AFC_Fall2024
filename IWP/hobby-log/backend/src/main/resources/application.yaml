@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: backend
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5438}/${POSTGRES_DB:hobby_jpa}
+    username: ${POSTGRES_USERNAME:hobby_dev}
+    password: ${POSTGRES_PASSWORD:hobby_devpw}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    jpa:
+      generate-ddl: false
+      hibernate:
+        ddl-auto: none
+server:
+  port: 8080
