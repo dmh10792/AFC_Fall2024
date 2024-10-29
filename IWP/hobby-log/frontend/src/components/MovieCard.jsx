@@ -39,7 +39,7 @@ const MovieCard = () => {
               <CardContent sx={{ flex: '1 0 auto' }}>
                   <Typography component="div" variant="h5" sx={{fontSize: 'medium'}}>
                     A Series of Unfortunate Events
-                      <MovieIcon sx={{marginLeft: '20px'}}/>
+                      <MovieIcon sx={{float: 'right'}}/>
                   </Typography>
 
                   <Typography

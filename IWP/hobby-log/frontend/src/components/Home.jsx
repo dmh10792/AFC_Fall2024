@@ -4,9 +4,12 @@
 import GameCard from './GameCard.jsx';
 import MovieCard from "./MovieCard.jsx";
 import SeriesCard from "./SeriesCard.jsx";
+import BookCard from "./BookCard.jsx";
+import CustomCard from "./CustomCard.jsx";
 
 //CSS
 import './css/Home.css'
+
 
 
 const Home = () => {
@@ -16,6 +19,8 @@ const Home = () => {
             <GameCard/>
             <MovieCard/>
             <SeriesCard/>
+            <BookCard/>
+            <CustomCard/>
         </div>
     )
 }

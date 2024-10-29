@@ -9,13 +9,13 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import RemoveCircleOutlinedIcon from '@mui/icons-material/RemoveCircleOutlined';
-import LiveTvIcon from '@mui/icons-material/LiveTv';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import Chip from '@mui/material/Chip';
 import Rating from '@mui/material/Rating';
 
 //CSS
 
-const SeriesCard = () => {
+const CustomCard = () => {
 
     const handleAdd = () => {
         console.log("Add");
@@ -27,19 +27,13 @@ const SeriesCard = () => {
 
     return (
         <Card sx={{ display: 'inline-flex', width: '480px', height: '220px', margin:'10px' }}>
-            <CardMedia
-                component="img"
-                sx={{ width: 151 }}
-                image="/src/assets/moonknightplaceholder.jpg_large"
-                alt="Live from space album cover"
-            />
 
           <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
 
               <CardContent sx={{ flex: '1 0 auto' }}>
                   <Typography component="div" variant="h5" sx={{fontSize: 'medium'}}>
-                    A Series of Unfortunate Events
-                      <LiveTvIcon sx={{float: 'right'}}/>
+                    Finish Painting Models
+                      <FormatListBulletedIcon sx={{float: 'right'}}/>
                   </Typography>
 
                   <Typography
@@ -47,22 +41,19 @@ const SeriesCard = () => {
                     component="div"
                     sx={{ color: 'text.secondary' }}
                   >
-                    Marvel Studios
+                    Just need to finish the terminator squad.
                   </Typography>
-
-                <Rating name="size-small" defaultValue={4.3} precision={0.1} size='small' sx={{paddingTop: '15px'}} readOnly/>
-                <Typography sx={{fontSize: 'small', paddingTop: '10px'}}>Release Date: 2023-10-14</Typography>
+                <Typography sx={{fontSize: 'small', paddingTop: '10px'}}>Deadline: 2024-11-1</Typography>
             </CardContent>
 
               <Box sx={{ display: 'block', alignItems: 'center', pl: 1, pb: 1 }}>
-                  <IconButton aria-label="remove" onClick={handleDelete} sx={{marginRight: '20px'}}>
+                  <IconButton aria-label="remove" onClick={handleDelete} sx={{marginRight: '50px'}}>
                     <RemoveCircleOutlinedIcon aria-label='delete-icon' className='deleteButton' />
                   </IconButton>
 
-                    <Chip label="Season 1" variant="outlined" color='primary' sx={{width: '80px', marginRight: '10px'}}/>
-                  <Chip label="Episode 8" variant="outlined" color='primary' sx={{width: '90px'}}/>
+                    <Chip label="In-Progress" variant="outlined" color='primary' sx={{width: '100px'}}/>
 
-                  <IconButton aria-label="add" onClick={handleAdd} sx={{marginLeft: '20px'}}>
+                  <IconButton aria-label="add" onClick={handleAdd} sx={{marginLeft: '50px'}}>
                     <AddCircleOutlinedIcon aria-label='add-icon' className='addbutton' />
                   </IconButton>
             </Box>
@@ -72,4 +63,4 @@ const SeriesCard = () => {
     )
 }
 
-export default SeriesCard;
+export default CustomCard;

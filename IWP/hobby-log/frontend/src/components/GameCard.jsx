@@ -38,7 +38,7 @@ const GameCard = () => {
             <CardContent sx={{ flex: '1 0 auto' }}>
               <Typography component="div" variant="h5" sx={{fontSize: 'medium'}}>
                 Metal Gear Solid 2: Sons of Liberty
-                  <Gamepad sx={{marginLeft: '20px'}}/>
+                  <Gamepad sx={{float: 'right'}}/>
               </Typography>
               <Typography
                 variant="subtitle1"
