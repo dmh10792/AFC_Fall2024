@@ -10,7 +10,7 @@ const AddPage = ({games}) => {
 
     return (
         <div style={{width: '95vw', margin: '70px auto', textAlign: 'center' }}>
-            <h1 className='page-header'>Add games to your backlog</h1>
+            <h1 className='page-header'>Add things to your backlog</h1>
             {games.map((game) => {
                 return (
                 <GameCard

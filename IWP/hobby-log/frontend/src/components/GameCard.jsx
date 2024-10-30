@@ -31,6 +31,7 @@ const GameCard = ({game}) => {
     const rating = game.rating;
     const baseURL = "https://api.rawg.io/api";
     const { RAWG_API_KEY } = process.env;
+    game.summary = summary;
 
     useEffect(() => {
         getGameSummary(game.id);
@@ -38,6 +39,7 @@ const GameCard = ({game}) => {
 
     const handleAdd = () => {
         console.log("Add");
+        //console.log(game);
     }
 
     const handleDelete = () => {
