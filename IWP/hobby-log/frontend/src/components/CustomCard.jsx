@@ -26,7 +26,7 @@ const CustomCard = () => {
     }
 
     return (
-        <Card sx={{ display: 'inline-flex', width: '480px', height: '220px', margin:'10px' }}>
+        <Card sx={{ display: 'inline-flex', width: '490px', height: '220px', margin:'10px' }}>
 
           <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
 
