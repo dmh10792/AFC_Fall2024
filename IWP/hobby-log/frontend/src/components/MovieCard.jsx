@@ -15,7 +15,9 @@ import Rating from '@mui/material/Rating';
 
 //CSS
 
-const MovieCard = () => {
+const MovieCard = ({movie}) => {
+
+    const rating = movie.rating;
 
     const handleAdd = () => {
         console.log("Add");
@@ -30,28 +32,20 @@ const MovieCard = () => {
             <CardMedia
                 component="img"
                 sx={{ width: 151 }}
-                image="/src/assets/unfortunateplaceholder.jpg"
-                alt="Live from space album cover"
+                image={movie.posterURL}
+                alt={movie.title}
             />
 
           <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
 
               <CardContent sx={{ flex: '1 0 auto' }}>
                   <Typography component="div" variant="h5" sx={{fontSize: 'medium'}}>
-                    A Series of Unfortunate Events
+                    {movie.title}
                       <MovieIcon sx={{float: 'right'}}/>
                   </Typography>
 
-                  <Typography
-                    variant="subtitle1"
-                    component="div"
-                    sx={{ color: 'text.secondary' }}
-                  >
-                    Paramount Studios
-                  </Typography>
-
-                <Rating name="size-small" defaultValue={2.3} precision={0.1} size='small' sx={{paddingTop: '15px'}} readOnly/>
-                <Typography sx={{fontSize: 'small', paddingTop: '10px'}}>Release Date: 2000-07-14</Typography>
+                <Rating name="size-small" defaultValue={rating} precision={0.1} size='small' sx={{paddingTop: '15px'}} readOnly/>
+                <Typography sx={{fontSize: 'small', paddingTop: '10px'}}>Release Date: {movie.release_date}</Typography>
             </CardContent>
 
               <Box sx={{ display: 'block', alignItems: 'center', pl: 1, pb: 1 }}>
@@ -59,7 +53,7 @@ const MovieCard = () => {
                     <RemoveCircleOutlinedIcon aria-label='delete-icon' className='deleteButton' />
                   </IconButton>
 
-                    <Chip label="Watched" variant="outlined" color='primary' sx={{width: '100px'}}/>
+                  {movie.status && <Chip label="Watched" variant="outlined" color='primary' sx={{width: '100px'}}/>}
 
                   <IconButton aria-label="add" onClick={handleAdd} sx={{marginLeft: '50px'}}>
                     <AddCircleOutlinedIcon aria-label='add-icon' className='addbutton' />

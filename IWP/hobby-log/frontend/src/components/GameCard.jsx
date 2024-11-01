@@ -20,9 +20,6 @@ import Rating from '@mui/material/Rating';
 
 //CSS
 
-/*
-Figure out how to set the summary to what was returned from the axios call.
- */
 
 const GameCard = ({game}) => {
 
@@ -47,6 +44,9 @@ const GameCard = ({game}) => {
     }
 
     const getGameSummary = (id) => {
+
+        if (game.summary != null) return;
+
         let route = "games";
         let endpoint = `${baseURL}/${route}/${id}?key=${RAWG_API_KEY}`;
         axios

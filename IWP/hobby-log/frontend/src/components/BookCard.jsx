@@ -11,12 +11,13 @@ import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import RemoveCircleOutlinedIcon from '@mui/icons-material/RemoveCircleOutlined';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import Chip from '@mui/material/Chip';
-import Rating from '@mui/material/Rating';
+import {Button} from "@mui/material";
 
 //CSS
 
-const BookCard = () => {
+const BookCard = ({book}) => {
 
+    const pageString = (book.status) ? `Page: ${book.page}` : `${book.length}`;
     const handleAdd = () => {
         console.log("Add");
     }
@@ -30,28 +31,30 @@ const BookCard = () => {
             <CardMedia
                 component="img"
                 sx={{ width: 151 }}
-                image="/src/assets/sleepyhollowplaceholder.jpg"
+                image={book.imageURL}
                 alt="Live from space album cover"
             />
 
           <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
 
               <CardContent sx={{ flex: '1 0 auto' }}>
-                  <Typography component="div" variant="h5" sx={{fontSize: 'medium'}}>
-                    The Legend of Sleepy Hollow
+                  <Typography component="div" variant="h5" sx={{fontSize: '12px'}}>
+                      {book.title}
                       <MenuBookIcon sx={{float: 'right'}}/>
                   </Typography>
 
                   <Typography
                     variant="subtitle1"
                     component="div"
-                    sx={{ color: 'text.secondary' }}
+                    sx={{ color: 'text.secondary', fontSize: '10px' }}
                   >
-                    Washington Irving
+                      {book.author}
                   </Typography>
 
-                <Rating name="size-small" defaultValue={4.7} precision={0.1} size='small' sx={{paddingTop: '15px'}} readOnly/>
-                <Typography sx={{fontSize: 'small', paddingTop: '10px'}}>Release Date: 1932-10-31</Typography>
+                <Typography sx={{fontSize: 'small', paddingTop: '10px'}}>Published: {book.publish_date}</Typography>
+                  <a href={book.link} target="_blank">
+                      <Button variant="contained" size='small' sx={{marginTop: '22px'}}>View</Button>
+                  </a>
             </CardContent>
 
               <Box sx={{ display: 'block', alignItems: 'center', pl: 1, pb: 1 }}>
@@ -59,7 +62,8 @@ const BookCard = () => {
                     <RemoveCircleOutlinedIcon aria-label='delete-icon' className='deleteButton' />
                   </IconButton>
 
-                    <Chip label="Page: 231" variant="outlined" color='primary' sx={{width: '100px'}}/>
+                    <Chip
+                        label={pageString} variant="outlined" color='primary' sx={{width: '100px'}}/>
 
                   <IconButton aria-label="add" onClick={handleAdd} sx={{marginLeft: '50px'}}>
                     <AddCircleOutlinedIcon aria-label='add-icon' className='addbutton' />
