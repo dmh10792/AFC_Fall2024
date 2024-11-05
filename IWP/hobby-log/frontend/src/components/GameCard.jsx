@@ -21,6 +21,7 @@ import Rating from '@mui/material/Rating';
 //CSS
 
 
+
 const GameCard = ({game}) => {
 
     const [summary, setSummary] = useState("");
@@ -81,8 +82,8 @@ const GameCard = ({game}) => {
                 <Typography sx={{fontSize: 'small', paddingTop: '10px'}}>Release Date: {game.release_date}</Typography>
 
                 <Carousel interval='2000' sx={{marginTop: '10px'}}>
-                    {game.genres.map( (genre, i) => {
-                        return (<Chip label={genre} key={i} variant="outlined" color='primary'/>)
+                    {game.genres.map( (genre) => {
+                        return (<Chip label={genre.name} key={genre.id} variant="outlined" color='primary'/>)
                     })}
                 </Carousel>
 

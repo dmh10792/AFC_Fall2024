@@ -17,7 +17,7 @@ import {Button} from "@mui/material";
 
 const BookCard = ({book}) => {
 
-    const pageString = (book.status) ? `Page: ${book.page}` : `${book.length}`;
+    const pageString = (book.status) ? `Page: ${book.page}` : `Pages: ${book.length}`;
     const handleAdd = () => {
         console.log("Add");
     }

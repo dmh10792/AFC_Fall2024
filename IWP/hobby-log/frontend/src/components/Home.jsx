@@ -18,11 +18,6 @@ const Home = () => {
     return (
         <div className='home-container' style={{}}>
             <h1 className='home-app-header'>Your Hobby log</h1>
-            {/*<GameCard/>*/}
-            {/*<MovieCard/>*/}
-            <SeriesCard/>
-            {/*<BookCard/>*/}
-            <CustomCard/>
             <AddCard/>
         </div>
     )

@@ -9,9 +9,8 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import RemoveCircleOutlinedIcon from '@mui/icons-material/RemoveCircleOutlined';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import Chip from '@mui/material/Chip';
-import Rating from '@mui/material/Rating';
 
 //CSS
 
@@ -33,7 +32,7 @@ const CustomCard = () => {
               <CardContent sx={{ flex: '1 0 auto' }}>
                   <Typography component="div" variant="h5" sx={{fontSize: 'medium'}}>
                     Finish Painting Models
-                      <FormatListBulletedIcon sx={{float: 'right'}}/>
+                      <TaskAltIcon sx={{float: 'right'}}/>
                   </Typography>
 
                   <Typography

@@ -5,37 +5,31 @@ import {useEffect, useState} from "react";
 import GameCard from "./GameCard.jsx";
 import MovieCard from "./MovieCard.jsx";
 import BookCard from "./BookCard.jsx";
+import SeriesCard from "./SeriesCard.jsx";
+import CustomCard from "./CustomCard.jsx";
+import AddCard from "./AddCard.jsx";
 
 //CSS
 
-const AddPage = ({games, movies, genres, books}) => {
+const AddPage = ({games, movies, books, shows, movieGenres, gameGenres}) => {
 
     useEffect(() => {
-        //setMovieGenres();
+        setMovieGenres();
     }, []);
 
     const setMovieGenres = () => {
-        if (genres.length === 0 || movies.length === 0) return;
-        console.log('line 18')
-        if (movies[0].genres[0] instanceof String)
-        console.log('line 20')
-
-        //console.log(movies);
-
-            for (let i = 0; i < movies.length; i++) {//for each movie
-                let movieGenres = [];
-                for (let j = 0; j < movies[i].genres.length; j++){//for each genre for that movie
-                    for (let i1 = 0; i1 < genres.length; i1++){
-                        const genreObj = genres[i1];
-                        if (genreObj.id === movies[i].genres[j]) {
-                            movieGenres.push(genreObj.name);
-                        }
+        let newGenres = [];
+        movies.forEach(movie => {
+            movie.genres.forEach(id => {
+                movieGenres.forEach(genre => {
+                    if(id === genre.id) {
+                        newGenres.push(genre);
+                        console.log(newGenres);
                     }
-                }
-                movies[i].genres = movieGenres;
-                console.log(movies[i].genres);
-            }
-
+                })
+            })
+            movie.genres = newGenres;
+        })
     }
 
     return (
@@ -49,6 +43,14 @@ const AddPage = ({games, movies, genres, books}) => {
                         key={game.id}
                         game={game}
                     />
+                )
+            })}
+
+            <h2 style={{textAlign: 'start', marginTop: '20px'}}>Shows</h2>
+            <hr/>
+            {shows.map((show) => {
+                return (
+                    <SeriesCard key={show.id} show={show}/>
                 )
             })}
 
@@ -67,6 +69,7 @@ const AddPage = ({games, movies, genres, books}) => {
                     <BookCard key={book.id} book={book}/>
                 )
             })}
+
         </div>
     )
 }
