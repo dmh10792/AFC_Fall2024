@@ -3,7 +3,13 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Game, Movie, Book, Series, Genre} from "./types.js";
-import {saveGameGenre, saveMovieGenre, getAllMovieGenres, getAllGameGenres} from "./clients/GenreClient.js";
+import {
+    saveGameGenre,
+    saveMovieGenre,
+    getAllMovieGenres,
+    getAllGameGenres,
+    saveSeriesGenre, getAllSeriesGenres
+} from "./clients/GenreClient.js";
 
 //COMPONENTS
 import Home from "./components/Home.jsx";
@@ -23,6 +29,7 @@ function App() {
     const [books, setBooks] = useState([]);
     const [movieGenres, setMovieGenres] = useState([]);
     const [gameGenres, setGameGenres] = useState([]);
+    const [seriesGenres, setSeriesGenres] = useState([]);
 
     const date = new Date();
     const currentDate = new Date().toJSON().slice(0, 10);
@@ -38,8 +45,10 @@ function App() {
     useEffect( () => {
         //getMovieGenres(); //only need to do once ever to get them into the DB
         //getGameGenres(); //only need to do once ever to get them into the DB
+        //getSeriesGenres(); //only need to do once ever to get them into the DB
         getMovieGenresfromDB();
         getGameGenresfromDB();
+        getSeriesGenresfromDB();
         getRecentGames();
         getNowPlaying();
         getBooks();
@@ -101,8 +110,6 @@ function App() {
           })
           .catch(error => {
               console.log(error.message)
-            // setErrorMessage(error.message);
-            // navigate('/Error');
           });
     }
 
@@ -173,6 +180,36 @@ function App() {
     }
 
     // eslint-disable-next-line no-unused-vars
+    const getSeriesGenres = () => {
+
+
+        let genreRoute = "genre/tv/list";
+        let endpoint = `${movieAPIBaseURL}/${genreRoute}`;
+
+         let options = {
+          method: 'GET',
+          url: endpoint,
+          params: {language: 'en-US'},
+          headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${VITE_TMDB_API_TOKEN}`
+          }
+        };
+
+         axios
+          .request(options)
+          .then(res => {
+              //console.log(res.data);
+              let temp = res.data.genres;
+              temp.forEach((genre) => {
+                  saveSeriesGenre(genre);
+              })
+          })
+          .catch(err => console.error(err));
+
+    }
+
+    // eslint-disable-next-line no-unused-vars
     const getGameGenres = () => {
         //if (genres.length !== 0) return;
 
@@ -226,6 +263,12 @@ function App() {
         });
     }
 
+    const getSeriesGenresfromDB = async () => {
+        await getAllSeriesGenres().then((response) => {
+            setSeriesGenres(response.data);
+        });
+    }
+
   return (
     <>
       <Router>
@@ -241,6 +284,7 @@ function App() {
                             shows={popSeries}
                             movieGenres={movieGenres}
                             gameGenres={gameGenres}
+                            seriesGenres={seriesGenres}
                         />}
               ></Route>
           </Routes>

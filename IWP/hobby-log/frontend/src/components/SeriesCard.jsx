@@ -12,6 +12,7 @@ import RemoveCircleOutlinedIcon from '@mui/icons-material/RemoveCircleOutlined';
 import TvIcon from '@mui/icons-material/Tv';
 import Chip from '@mui/material/Chip';
 import Rating from '@mui/material/Rating';
+import Carousel from "react-material-ui-carousel";
 
 //CSS
 
@@ -41,13 +42,19 @@ const SeriesCard = ({show}) => {
           <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
 
               <CardContent sx={{ flex: '1 0 auto', alignItems: 'center' }}>
-                  <Typography component="div" variant="h5" sx={{fontSize: 'medium'}}>
+                  <Typography component="div" variant="h5" sx={{fontSize: '15px'}}>
                       {show.title}
                       <TvIcon sx={{float: 'right'}}/>
                   </Typography>
 
-                <Rating name="size-small" defaultValue={rating} precision={0.1} size='small' sx={{paddingTop: '15px'}} readOnly/>
+                <Rating name="size-small" defaultValue={rating} precision={0.1} size='small' sx={{paddingTop: '5px'}} readOnly/>
                 <Typography sx={{fontSize: 'small', paddingTop: '10px'}}>Air Date: {show.first_air_date}</Typography>
+
+                <Carousel interval='2000' sx={{marginTop: '10px'}}>
+                    {show.genres.map( (genre) => {
+                        return (<Chip label={genre.name} key={genre.id} variant="outlined" color='primary'/>)
+                    })}
+                </Carousel>
             </CardContent>
 
               <Box sx={{ display: 'block', alignItems: 'center', pl: 1, pb: 1 }}>

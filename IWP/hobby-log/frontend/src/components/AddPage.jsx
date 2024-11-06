@@ -8,27 +8,42 @@ import BookCard from "./BookCard.jsx";
 import SeriesCard from "./SeriesCard.jsx";
 import CustomCard from "./CustomCard.jsx";
 import AddCard from "./AddCard.jsx";
+import log from "eslint-plugin-react/lib/util/log.js";
 
 //CSS
 
-const AddPage = ({games, movies, books, shows, movieGenres, gameGenres}) => {
+const AddPage = ({games, movies, books, shows, movieGenres, gameGenres, seriesGenres}) => {
 
     useEffect(() => {
         setMovieGenres();
     }, []);
 
     const setMovieGenres = () => {
-        let newGenres = [];
+
         movies.forEach(movie => {
-            movie.genres.forEach(id => {
+            let newGenres = [];
+            movie.genre_ids.forEach(id => {
                 movieGenres.forEach(genre => {
                     if(id === genre.id) {
                         newGenres.push(genre);
-                        console.log(newGenres);
                     }
                 })
             })
             movie.genres = newGenres;
+        })
+
+        shows.forEach(show => {
+            let newGenres = [];
+            console.log(`---------${show.title} ---------------`);
+            show.genre_ids.forEach(id => {
+                seriesGenres.forEach(genre => {
+                    if(id === genre.id) {
+                        newGenres.push(genre);
+                    }
+                })
+            })
+            show.genres = newGenres;
+            console.log(show.genres);
         })
     }
 

@@ -12,6 +12,7 @@ import RemoveCircleOutlinedIcon from '@mui/icons-material/RemoveCircleOutlined';
 import MovieIcon from '@mui/icons-material/Movie';
 import Chip from '@mui/material/Chip';
 import Rating from '@mui/material/Rating';
+import Carousel from "react-material-ui-carousel";
 
 //CSS
 
@@ -39,13 +40,19 @@ const MovieCard = ({movie}) => {
           <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
 
               <CardContent sx={{ flex: '1 0 auto' }}>
-                  <Typography component="div" variant="h5" sx={{fontSize: 'medium'}}>
+                  <Typography component="div" variant="h5" sx={{fontSize: '15px'}}>
                     {movie.title}
                       <MovieIcon sx={{float: 'right'}}/>
                   </Typography>
 
-                <Rating name="size-small" defaultValue={rating} precision={0.1} size='small' sx={{paddingTop: '15px'}} readOnly/>
+                <Rating name="size-small" defaultValue={rating} precision={0.1} size='small' sx={{paddingTop: '5px'}} readOnly/>
                 <Typography sx={{fontSize: 'small', paddingTop: '10px'}}>Release Date: {movie.release_date}</Typography>
+
+                <Carousel interval='2000' sx={{marginTop: '10px'}}>
+                    {movie.genres.map( (genre) => {
+                        return (<Chip label={genre.name} key={genre.id} variant="outlined" color='primary'/>)
+                    })}
+                </Carousel>
             </CardContent>
 
               <Box sx={{ display: 'block', alignItems: 'center', pl: 1, pb: 1 }}>
