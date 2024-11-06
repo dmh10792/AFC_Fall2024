@@ -19,6 +19,7 @@ import Carousel from "react-material-ui-carousel";
 const MovieCard = ({movie}) => {
 
     const rating = movie.rating;
+    const notNull = (movie.genres.length !== 0);
 
     const handleAdd = () => {
         console.log("Add");

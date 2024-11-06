@@ -34,7 +34,6 @@ const AddPage = ({games, movies, books, shows, movieGenres, gameGenres, seriesGe
 
         shows.forEach(show => {
             let newGenres = [];
-            console.log(`---------${show.title} ---------------`);
             show.genre_ids.forEach(id => {
                 seriesGenres.forEach(genre => {
                     if(id === genre.id) {
@@ -43,7 +42,6 @@ const AddPage = ({games, movies, books, shows, movieGenres, gameGenres, seriesGe
                 })
             })
             show.genres = newGenres;
-            console.log(show.genres);
         })
     }
 

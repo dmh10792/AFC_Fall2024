@@ -22,7 +22,7 @@ export function Movie(id, title, posterURL, overview, rating, rating_count, rele
     this.release_date = release_date;
     this.genre_ids = genre_ids;
     this.status = status;
-    this.genres = null;
+    this.genres = [];
     this.last_date = null;
 }
 
@@ -38,7 +38,7 @@ export function Series(id, title, posterURL, overview, rating, rating_count, fir
     this.status = status;
     this.season = season;
     this.episode = episode;
-    this.genres = null;
+    this.genres = [];
     this.last_date = null;
 }
 
