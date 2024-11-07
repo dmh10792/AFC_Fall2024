@@ -2,6 +2,7 @@ package com.example.backend.controller;
 
 import com.example.backend.entity.Game;
 import com.example.backend.service.GameService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,7 @@ public class GameController {
     }
 
     @DeleteMapping("/{gameId}")
-    public ResponseEntity<Game> deleteGame(@PathVariable Long gameId) {
+    public ResponseEntity<HttpStatus> deleteGame(@PathVariable Long gameId) {
         return ResponseEntity.ok(gameService.delete(gameId));
     }
 

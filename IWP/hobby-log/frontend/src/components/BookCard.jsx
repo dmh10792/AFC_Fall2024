@@ -12,18 +12,30 @@ import RemoveCircleOutlinedIcon from '@mui/icons-material/RemoveCircleOutlined';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import Chip from '@mui/material/Chip';
 import {Button} from "@mui/material";
+import {deleteBook, saveBook} from "../clients/BookClient.js";
 
 //CSS
 
 const BookCard = ({book}) => {
 
     const pageString = (book.status) ? `Page: ${book.page}` : `Pages: ${book.length}`;
+
     const handleAdd = () => {
-        console.log("Add");
+        book.status = "Backlog";
+        book.last_date = new Date().toJSON().slice(0, 10);
+        book.page = 1;
+        saveBook(book)
+            .then(() => alert("Book added to backlog."))
     }
 
     const handleDelete = () => {
-        console.log("Delete");
+        if (book.status === null) {
+            alert("Book is not in your backlog.");
+            return;
+        }
+
+        deleteBook(book.id)
+            .then(() => alert("Book removed from your backlog."))
     }
 
     return (

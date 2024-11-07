@@ -31,6 +31,7 @@ const AddPage = ({games, movies, books, shows, movieGenres, gameGenres, seriesGe
             })
             //console.log(newGenres);
             movie.genres = newGenres;
+            //console.log(movie.genres);
         })
 
         shows.forEach(show => {

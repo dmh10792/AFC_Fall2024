@@ -3,6 +3,7 @@ package com.example.backend.service;
 import com.example.backend.entity.Game;
 import com.example.backend.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,10 +18,10 @@ public class GameService {
         return gameRepository.save(game);
     }
 
-    public Game delete(Long gameId) {
+    public HttpStatus delete(Long gameId) {
         Game game = gameRepository.findById(gameId).get();
         gameRepository.delete(game);
-        return game;
+        return HttpStatus.OK;
     }
 
     public List<Game> findAllGames() {

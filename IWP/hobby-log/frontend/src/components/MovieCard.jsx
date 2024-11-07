@@ -13,6 +13,7 @@ import MovieIcon from '@mui/icons-material/Movie';
 import Chip from '@mui/material/Chip';
 import Rating from '@mui/material/Rating';
 import Carousel from "react-material-ui-carousel";
+import {deleteMovie, saveMovie} from "../clients/MovieClient.js";
 
 //CSS
 
@@ -21,11 +22,21 @@ const MovieCard = ({movie}) => {
     const rating = movie.rating;
 
     const handleAdd = () => {
-        console.log("Add");
+        movie.status = "Backlog"
+        movie.last_date = new Date().toJSON().slice(0, 10);
+        console.log(movie);
+        saveMovie(movie)
+            .then(() => alert("Movie added to backlog."));
     }
 
     const handleDelete = () => {
-        console.log("Delete");
+        if (movie.status === null) {
+            alert("Movie is not in your backlog.");
+            return;
+        }
+
+        deleteMovie(movie.id)
+            .then(() => alert("Movie removed from your backlog."));
     }
 
     return (
@@ -50,6 +61,7 @@ const MovieCard = ({movie}) => {
 
                 <Carousel interval='2000' sx={{marginTop: '10px'}}>
                     {movie.genres.map( (genre) => {
+                        //console.log(genre.name);
                         return (<Chip label={genre.name} key={genre.id} variant="outlined" color='primary'/>)
                     })}
                 </Carousel>

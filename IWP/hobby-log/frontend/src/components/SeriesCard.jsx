@@ -1,4 +1,5 @@
 //UTILITY
+import {deleteSeries, saveSeries} from "../clients/SeriesClient.js";
 
 //COMPONENTS
 import Box from '@mui/material/Box';
@@ -14,6 +15,7 @@ import Chip from '@mui/material/Chip';
 import Rating from '@mui/material/Rating';
 import Carousel from "react-material-ui-carousel";
 
+
 //CSS
 
 const SeriesCard = ({show}) => {
@@ -23,11 +25,20 @@ const SeriesCard = ({show}) => {
     const episode = show.episode || 6;
 
     const handleAdd = () => {
-        console.log("Add");
+        show.status = "Backlog"
+        show.last_date = new Date().toJSON().slice(0, 10);
+        saveSeries(show)
+            .then(() => alert("Show added to backlog."));
     }
 
     const handleDelete = () => {
-        console.log("Delete");
+        if (show.status === null) {
+            alert("Series is not in your backlog");
+            return;
+        }
+
+        deleteSeries(show.id)
+            .then(() => alert("Series removed from your backlog"));
     }
 
     return (

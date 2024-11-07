@@ -244,7 +244,7 @@ function App() {
             .then(response => {
                 //console.log(response.data.results);
                 let bookArray = response.data.results.map((book) => {
-                    return new Book(book.number_lccn[0], book.title, book.image_url[0], book.item.contributors[0],
+                    return new Book(book.number_lccn[0].replace(/^\D+/g, ''), book.title, book.image_url[0], book.item.contributors[0],
                         parseInt(book.item.medium[0]), book.description[0], book.date, book.url, null, null)
                 })
                 //console.log(bookArray);
