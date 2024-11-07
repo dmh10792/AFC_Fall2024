@@ -29,6 +29,7 @@ const AddPage = ({games, movies, books, shows, movieGenres, gameGenres, seriesGe
                     }
                 })
             })
+            //console.log(newGenres);
             movie.genres = newGenres;
         })
 
@@ -41,6 +42,7 @@ const AddPage = ({games, movies, books, shows, movieGenres, gameGenres, seriesGe
                     }
                 })
             })
+            //console.log(newGenres);
             show.genres = newGenres;
         })
     }

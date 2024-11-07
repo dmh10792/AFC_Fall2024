@@ -71,7 +71,7 @@ function App() {
                     let genres = game.genres.map(genre => {
                         return genre;
                     })
-                    return new Game(game.id, game.name, game.background_image, null,
+                    return new Game(game.id, game.name, game.background_image, "",
                         game.rating, game.ratings_count, game.released, null, genres, null);
                 })
                 setRecentGames(gameArray);
@@ -102,6 +102,8 @@ function App() {
           .request(options)
           .then(response =>{
             let movieArray = response.data.results.map((movie) => {
+
+            //console.log(newGenres);
               return new Movie(movie.id, movie.title, `https://image.tmdb.org/t/p/w200${movie.poster_path}`,
                   movie.overview, (movie.vote_average/2.5)+1, movie.vote_count, movie.release_date, movie.genre_ids,
                   null)

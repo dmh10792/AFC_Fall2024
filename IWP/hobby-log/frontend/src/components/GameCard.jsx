@@ -1,6 +1,7 @@
 //UTILITY
 import {Game} from "../types.js";
 import {useEffect, useState} from "react";
+import {deleteGame, saveGame} from "../clients/GameClient.js";
 import axios from "axios";
 
 //COMPONENTS
@@ -24,38 +25,47 @@ import Rating from '@mui/material/Rating';
 
 const GameCard = ({game}) => {
 
-    const [summary, setSummary] = useState("");
+    //const [summary, setSummary] = useState(game.summary);
 
     const rating = game.rating;
     const baseURL = "https://api.rawg.io/api";
     const { RAWG_API_KEY } = process.env;
-    game.summary = summary;
+    //game.summary = summary;
 
     useEffect(() => {
         getGameSummary(game.id);
     }, []);
 
     const handleAdd = () => {
-        console.log("Add");
-        //console.log(game);
+        game.status = "Backlog"
+        game.last_date = new Date().toJSON().slice(0, 10);
+        saveGame(game)
+            .then(() => alert("Game added to your backlog."));
     }
 
     const handleDelete = () => {
-        console.log("Delete");
+        //if the status is null that means it is not in the database and cant be deleted
+        if (game.status === null) {
+            alert("Game is not in your backlog");
+            return;
+        }
+
+        deleteGame(game.id)
+            .then(() => alert("Game removed from your backlog"));
     }
 
     const getGameSummary = (id) => {
+        if (game.summary == "") {
 
-        if (game.summary != null) return;
-
-        let route = "games";
-        let endpoint = `${baseURL}/${route}/${id}?key=${RAWG_API_KEY}`;
-        axios
-            .get(endpoint)
-            .then(response => {
-                 setSummary(response.data.description_raw);
-            })
-            .catch(error => console.log(error.messgae));
+            let route = "games";
+            let endpoint = `${baseURL}/${route}/${id}?key=${RAWG_API_KEY}`;
+            axios
+                .get(endpoint)
+                .then(response => {
+                    game.summary = response.data.description_raw
+                })
+                .catch(error => console.log(error.messgae));
+        }
     }
 
     return (
