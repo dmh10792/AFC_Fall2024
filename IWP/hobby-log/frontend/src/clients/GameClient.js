@@ -12,3 +12,8 @@ export const saveGame = (data)=> {
 export const deleteGame = (id) => {
     return axios.delete(`api/game/${id}`);
 }
+
+export const getAllGames = () => {
+    return axios.get('/api/game')
+            .then(response => response.data);
+}

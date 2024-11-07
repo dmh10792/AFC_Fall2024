@@ -7,3 +7,8 @@ export const saveMovie = (movie) => {
 export const deleteMovie = (id) => {
     return axios.delete(`/api/movie/${id}`);
 }
+
+export const getAllMovies = () => {
+    return axios.get('/api/movie')
+            .then(response => response.data);
+}

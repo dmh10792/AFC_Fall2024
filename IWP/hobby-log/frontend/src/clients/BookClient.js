@@ -7,3 +7,8 @@ export const saveBook = (book) => {
 export const deleteBook = (id) => {
     return axios.delete(`/api/book/${id}`);
 }
+
+export const getAllBooks = () => {
+    return axios.get('/api/book')
+            .then(response => response.data);
+}

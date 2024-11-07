@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MovieService {
 
@@ -22,5 +24,9 @@ public class MovieService {
         Movie movie = movieRepository.findById(movieId).get();
         movieRepository.delete(movie);
         return HttpStatus.OK;
+    }
+
+    public List<Movie> getAll() {
+        return movieRepository.findAll();
     }
 }

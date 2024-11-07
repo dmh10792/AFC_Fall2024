@@ -28,7 +28,7 @@ public class GameController {
         return ResponseEntity.ok(gameService.delete(gameId));
     }
 
-    @GetMapping("/list")
+    @GetMapping
     public List<Game> getAllGames() {
         return gameService.findAllGames();
     }

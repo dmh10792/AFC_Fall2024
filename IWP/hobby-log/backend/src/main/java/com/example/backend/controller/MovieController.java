@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/movie")
 public class MovieController {
@@ -25,6 +27,11 @@ public class MovieController {
     @DeleteMapping("/{movieId}")
     public ResponseEntity<HttpStatus> deleteMovie(@PathVariable Long movieId) {
         return ResponseEntity.ok(movieService.delete(movieId));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Movie>> getAllMovies() {
+        return ResponseEntity.ok(movieService.getAll());
     }
 
 }

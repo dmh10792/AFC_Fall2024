@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/book")
 public class BookController {
@@ -24,6 +26,11 @@ public class BookController {
     @DeleteMapping("/{bookId}")
     public ResponseEntity<HttpStatus> deleteBook(@PathVariable Long bookId) {
         return ResponseEntity.ok(bookService.delete(bookId));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Book>> getAllBooks() {
+        return ResponseEntity.ok(bookService.getAll());
     }
 
 }

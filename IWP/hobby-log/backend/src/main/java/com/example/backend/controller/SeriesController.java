@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/series")
 public class SeriesController {
@@ -24,5 +26,10 @@ public class SeriesController {
     @DeleteMapping("/{seriesId}")
     public ResponseEntity<HttpStatus> deleteSeries(@PathVariable Long seriesId) {
         return ResponseEntity.ok(seriesService.delete(seriesId));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Series>> getAllSeries() {
+        return ResponseEntity.ok(seriesService.getAll());
     }
 }
