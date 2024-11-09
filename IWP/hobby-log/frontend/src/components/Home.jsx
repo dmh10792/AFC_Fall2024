@@ -15,6 +15,8 @@ import {getAllGames} from "../clients/GameClient.js";
 import {getAllSeries} from "../clients/SeriesClient.js";
 import {getAllBooks} from "../clients/BookClient.js";
 import log from "eslint-plugin-react/lib/util/log.js";
+import {etEE} from "@mui/material/locale";
+import {getAllMovies} from "../clients/MovieClient.js";
 
 
 
@@ -27,30 +29,22 @@ const Home = () => {
     }, []);
 
 
-    const getBacklog = () => {
+    const getBacklog = async () => {
 
-        if (backlog.length !== 0) return;
+        const [games, series, books, movies] = await Promise.all([
+            getAllGames(),
+            getAllSeries(),
+            getAllBooks(),
+            getAllMovies()
+        ]);
 
-        getAllGames().then((data) => {
-            let tempGames = data.map((game) => {
-                return <GameCard key={game.id} game={game}/>
-            })
-            setBacklog([...backlog, tempGames]);
-        })
+        const gameCards = games.map(game => <GameCard key={game.id} game={game} />);
+        const seriesCards = series.map(show => <SeriesCard key={show.id} show={show} />);
+        const bookCards = books.map(book => <BookCard key={book.id} book={book} />);
+        const movieCards = movies.map(movie => <MovieCard key={movie.id} movie={movie} />);
 
-        getAllSeries().then((data) => {
-            let tempShows = data.map((show) => {
-                return <SeriesCard key={show.id} show={show}/>
-            })
-            setBacklog([...backlog, tempShows]);
-        })
+        setBacklog([...gameCards, ...seriesCards, ...movieCards, ...bookCards]);
 
-        getAllBooks().then((data) => {
-            let tempBooks = data.map((book) => {
-                return <BookCard key={book.id} book={book}/>
-            })
-            setBacklog([...backlog, tempBooks]);
-        })
 
     }
 
@@ -61,7 +55,6 @@ const Home = () => {
             {backlog.map((card) => {
                 return card;
             })}
-            {console.log(backlog)}
             <AddCard/>
         </div>
     )
