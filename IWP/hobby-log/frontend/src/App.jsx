@@ -102,10 +102,12 @@ function App() {
           .request(options)
           .then(response =>{
             let movieArray = response.data.results.map((movie) => {
-
+                const newMovieGenres = movie.genre_ids.map(id =>
+                    movieGenres.find(genre => genre.id === id)
+                ).filter(genre => genre);
             //console.log(newGenres);
               return new Movie(movie.id, movie.title, `https://image.tmdb.org/t/p/w200${movie.poster_path}`,
-                  movie.overview, (movie.vote_average/2.5)+1, movie.vote_count, movie.release_date, movie.genre_ids,
+                  movie.overview, (movie.vote_average/2.5)+1, movie.vote_count, movie.release_date, newMovieGenres,
                   null)
             });
             setNowPlaying(movieArray);
@@ -143,12 +145,9 @@ function App() {
                   null, null, null)
             });
             setPopSeries(seriesArray);
-              //console.log(seriesArray);
           })
           .catch(error => {
               console.log(error.message)
-            // setErrorMessage(error.message);
-            // navigate('/Error');
           });
     }
 

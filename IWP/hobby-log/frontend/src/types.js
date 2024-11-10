@@ -12,7 +12,7 @@ export function Game(id, name, coverImageURL, summary, rating, rating_count, rel
     this.last_date = null;
 }
 
-export function Movie(id, title, posterURL, overview, rating, rating_count, release_date, genre_ids, status) {
+export function Movie(id, title, posterURL, overview, rating, rating_count, release_date, genres, status) {
     this.id = id;
     this.title = title;
     this.posterURL = posterURL;
@@ -20,9 +20,9 @@ export function Movie(id, title, posterURL, overview, rating, rating_count, rele
     this.rating = rating;
     this.rating_count = rating_count;
     this.release_date = release_date;
-    this.genre_ids = genre_ids;
+    // this.genre_ids = genre_ids;
     this.status = status;
-    this.genres = [];
+    this.genres = genres;
     this.last_date = null;
 }
 
