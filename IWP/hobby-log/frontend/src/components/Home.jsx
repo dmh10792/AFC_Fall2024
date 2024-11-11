@@ -26,7 +26,7 @@ const Home = () => {
 
     useEffect(() => {
         getBacklog();
-    }, []);
+    }, [backlog]);
 
 
     const getBacklog = async () => {

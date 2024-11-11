@@ -17,6 +17,7 @@ import Carousel from 'react-material-ui-carousel'
 import {Gamepad} from "@mui/icons-material";
 import Chip from '@mui/material/Chip';
 import Rating from '@mui/material/Rating';
+import GamePage from "./pages/GamePage.jsx";
 
 
 //CSS
@@ -25,12 +26,11 @@ import Rating from '@mui/material/Rating';
 
 const GameCard = ({game}) => {
 
-    //const [summary, setSummary] = useState(game.summary);
+    const [pageOpen, setPageOpen] = useState(false);
 
     const rating = game.rating;
     const baseURL = "https://api.rawg.io/api";
     const { RAWG_API_KEY } = process.env;
-    //game.summary = summary;
 
     useEffect(() => {
         getGameSummary(game.id);
@@ -68,54 +68,67 @@ const GameCard = ({game}) => {
         }
     }
 
+    const handleClickOpen = () => {
+        setPageOpen(true);
+    };
+
+    const handleClose = () => {
+        setPageOpen(false);
+    };
+
     return (
-        <Card sx={{ display: 'inline-flex', width: '490px', height: '220px', margin:'10px' }}>
+        <>
+            <Card sx={{ display: 'inline-flex', width: '490px', height: '220px', margin:'10px' }}>
 
-            <CardMedia
-                component="img"
-                sx={{ width: 151 }}
-                image={game.coverImageURL}
-                alt={game.name}
-            />
+                <CardMedia
+                    component="img"
+                    sx={{ width: 151 }}
+                    image={game.coverImageURL}
+                    alt={game.name}
+                    onClick={handleClickOpen}
+                />
 
-          <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
 
-            <CardContent sx={{ flex: '1 0 auto', paddingLeft: '30px'}}>
+                <CardContent sx={{ flex: '1 0 auto', paddingLeft: '30px'}}>
 
-              <Typography component="div" variant="h5" sx={{fontSize: '15px', paddingLeft: '20px'}}>
-                {game.name}
-                  <Gamepad sx={{float: 'right'}}/>
-              </Typography>
+                  <Typography component="div" variant="h5" sx={{fontSize: '15px', paddingLeft: '20px'}}>
+                    {game.name}
+                      <Gamepad sx={{float: 'right'}}/>
+                  </Typography>
 
-                <Rating name="size-small" defaultValue={rating} precision={0.1} size='small' sx={{paddingTop: '5px', paddingLeft: '30px'}} readOnly/>
+                    <Rating name="size-small" defaultValue={rating} precision={0.1} size='small' sx={{paddingTop: '5px', paddingLeft: '30px'}} readOnly/>
 
-                <Typography sx={{fontSize: 'small', paddingTop: '10px'}}>Release Date: {game.release_date}</Typography>
+                    <Typography sx={{fontSize: 'small', paddingTop: '10px'}}>Release Date: {game.release_date}</Typography>
 
-                <Carousel interval='2000' sx={{marginTop: '10px'}}>
-                    {game.genres.map( (genre) => {
-                        return (<Chip label={genre.name} key={genre.id} variant="outlined" color='primary'/>)
-                    })}
-                </Carousel>
+                    <Carousel interval='2000' sx={{marginTop: '10px'}}>
+                        {game.genres.map( (genre) => {
+                            return (<Chip label={genre.name} key={genre.id} variant="outlined" color='primary'/>)
+                        })}
+                    </Carousel>
 
-            </CardContent>
+                </CardContent>
 
-            <Box sx={{ display: 'block', alignItems: 'center', pl: 1, pb: 1 }}>
+                <Box sx={{ display: 'block', alignItems: 'center', pl: 1, pb: 1 }}>
 
-              <IconButton aria-label="remove" onClick={handleDelete} sx={{marginRight: '50px'}}>
-                <RemoveCircleOutlinedIcon aria-label='delete-icon' className='deleteButton' />
-              </IconButton>
+                  <IconButton aria-label="remove" onClick={handleDelete} sx={{marginRight: '50px'}}>
+                    <RemoveCircleOutlinedIcon aria-label='delete-icon' className='deleteButton' />
+                  </IconButton>
 
-                {game.status && <Chip label={game.status} variant="outlined" color='primary' sx={{width: '100px'}}/>}
+                    {game.status && <Chip label={game.status} variant="outlined" color='primary' sx={{width: '100px'}}/>}
 
-              <IconButton aria-label="add" onClick={handleAdd} sx={{marginLeft: '50px'}}>
-                <AddCircleOutlinedIcon aria-label='add-icon' className='addbutton' />
-              </IconButton>
+                  <IconButton aria-label="add" onClick={handleAdd} sx={{marginLeft: '50px'}}>
+                    <AddCircleOutlinedIcon aria-label='add-icon' className='addbutton' />
+                  </IconButton>
 
-            </Box>
+                </Box>
 
-          </Box>
+              </Box>
 
-        </Card>
+            </Card>
+
+            <GamePage isOpen={pageOpen} handleClose={handleClose}/>
+        </>
     )
 }
 

@@ -13,10 +13,14 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import Chip from '@mui/material/Chip';
 import {Button} from "@mui/material";
 import {deleteBook, saveBook} from "../clients/BookClient.js";
+import {useState} from "react";
+import BookPage from "./pages/BookPage.jsx";
 
 //CSS
 
 const BookCard = ({book}) => {
+
+    const [pageOpen, setPageOpen] = useState(false);
 
     const pageString = (book.status) ? `Page: ${book.page}` : `Pages: ${book.length}`;
 
@@ -38,52 +42,66 @@ const BookCard = ({book}) => {
             .then(() => alert("Book removed from your backlog."))
     }
 
+    const handleClickOpen = () => {
+        setPageOpen(true);
+    };
+
+    const handleClose = () => {
+        setPageOpen(false);
+    };
+
     return (
-        <Card sx={{ display: 'inline-flex', width: '490px', height: '220px', margin:'10px' }}>
-            <CardMedia
-                component="img"
-                sx={{ width: 151 }}
-                image={book.imageURL}
-                alt="Live from space album cover"
-            />
+        <>
+            <Card sx={{ display: 'inline-flex', width: '490px', height: '220px', margin:'10px' }}>
+                <CardMedia
+                    component="img"
+                    sx={{ width: 151 }}
+                    image={book.imageURL}
+                    alt="Live from space album cover"
+                    onClick={handleClickOpen}
+                />
 
-          <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
 
-              <CardContent sx={{ flex: '1 0 auto' }}>
-                  <Typography component="div" variant="h5" sx={{fontSize: '12px'}}>
-                      {book.title}
-                      <MenuBookIcon sx={{float: 'right'}}/>
-                  </Typography>
+                  <CardContent sx={{ flex: '1 0 auto' }}>
+                      <Typography component="div" variant="h5" sx={{fontSize: '12px'}}>
+                          {book.title}
+                          <MenuBookIcon sx={{float: 'right'}}/>
+                      </Typography>
 
-                  <Typography
-                    variant="subtitle1"
-                    component="div"
-                    sx={{ color: 'text.secondary', fontSize: '10px' }}
-                  >
-                      {book.author}
-                  </Typography>
+                      <Typography
+                        variant="subtitle1"
+                        component="div"
+                        sx={{ color: 'text.secondary', fontSize: '10px' }}
+                      >
+                          {book.author}
+                      </Typography>
 
-                <Typography sx={{fontSize: 'small', paddingTop: '10px'}}>Published: {book.publish_date}</Typography>
-                  <a href={book.link} target="_blank">
-                      <Button variant="contained" size='small' sx={{marginTop: '22px'}}>View</Button>
-                  </a>
-            </CardContent>
+                    <Typography sx={{fontSize: 'small', paddingTop: '10px'}}>Published: {book.publish_date}</Typography>
+                      <a href={book.link} target="_blank">
+                          <Button variant="contained" size='small' sx={{marginTop: '22px'}}>View</Button>
+                      </a>
+                </CardContent>
 
-              <Box sx={{ display: 'block', alignItems: 'center', pl: 1, pb: 1 }}>
-                  <IconButton aria-label="remove" onClick={handleDelete} sx={{marginRight: '50px'}}>
-                    <RemoveCircleOutlinedIcon aria-label='delete-icon' className='deleteButton' />
-                  </IconButton>
+                  <Box sx={{ display: 'block', alignItems: 'center', pl: 1, pb: 1 }}>
+                      <IconButton aria-label="remove" onClick={handleDelete} sx={{marginRight: '50px'}}>
+                        <RemoveCircleOutlinedIcon aria-label='delete-icon' className='deleteButton' />
+                      </IconButton>
 
-                    <Chip
-                        label={pageString} variant="outlined" color='primary' sx={{width: '100px'}}/>
+                        <Chip
+                            label={pageString} variant="outlined" color='primary' sx={{width: '100px'}}/>
 
-                  <IconButton aria-label="add" onClick={handleAdd} sx={{marginLeft: '50px'}}>
-                    <AddCircleOutlinedIcon aria-label='add-icon' className='addbutton' />
-                  </IconButton>
-            </Box>
-          </Box>
+                      <IconButton aria-label="add" onClick={handleAdd} sx={{marginLeft: '50px'}}>
+                        <AddCircleOutlinedIcon aria-label='add-icon' className='addbutton' />
+                      </IconButton>
+                </Box>
+              </Box>
 
-        </Card>
+            </Card>
+
+            <BookPage isOpen={pageOpen} handleClose={handleClose}/>
+        </>
+
     )
 }
 
