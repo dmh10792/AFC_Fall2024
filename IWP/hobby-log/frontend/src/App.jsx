@@ -305,9 +305,6 @@ function App() {
                             movies={nowPlaying}
                             books={books}
                             shows={popSeries}
-                            movieGenres={movieGenres}
-                            gameGenres={gameGenres}
-                            seriesGenres={seriesGenres}
                         />}
               ></Route>
           </Routes>

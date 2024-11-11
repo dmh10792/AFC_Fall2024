@@ -12,41 +12,8 @@ import log from "eslint-plugin-react/lib/util/log.js";
 
 //CSS
 
-const AddPage = ({games, movies, books, shows, movieGenres, gameGenres, seriesGenres}) => {
+const AddPage = ({games, movies, books, shows}) => {
 
-    useEffect(() => {
-        setMovieGenres();
-    }, []);
-
-    const setMovieGenres = () => {
-
-        // movies.forEach(movie => {
-        //     let newGenres = [];
-        //     movie.genre_ids.forEach(id => {
-        //         movieGenres.forEach(genre => {
-        //             if(id === genre.id) {
-        //                 newGenres.push(genre);
-        //             }
-        //         })
-        //     })
-        //     //console.log(newGenres);
-        //     movie.genres = newGenres;
-        //     //console.log(movie.genres);
-        // })
-
-        // shows.forEach(show => {
-        //     let newGenres = [];
-        //     show.genre_ids.forEach(id => {
-        //         seriesGenres.forEach(genre => {
-        //             if(id === genre.id) {
-        //                 newGenres.push(genre);
-        //             }
-        //         })
-        //     })
-        //     //console.log(newGenres);
-        //     show.genres = newGenres;
-        // })
-    }
 
     return (
         <div style={{width: '95vw', margin: '70px auto', textAlign: 'center'}}>
