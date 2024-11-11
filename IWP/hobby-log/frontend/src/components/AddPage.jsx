@@ -34,18 +34,18 @@ const AddPage = ({games, movies, books, shows, movieGenres, gameGenres, seriesGe
         //     //console.log(movie.genres);
         // })
 
-        shows.forEach(show => {
-            let newGenres = [];
-            show.genre_ids.forEach(id => {
-                seriesGenres.forEach(genre => {
-                    if(id === genre.id) {
-                        newGenres.push(genre);
-                    }
-                })
-            })
-            //console.log(newGenres);
-            show.genres = newGenres;
-        })
+        // shows.forEach(show => {
+        //     let newGenres = [];
+        //     show.genre_ids.forEach(id => {
+        //         seriesGenres.forEach(genre => {
+        //             if(id === genre.id) {
+        //                 newGenres.push(genre);
+        //             }
+        //         })
+        //     })
+        //     //console.log(newGenres);
+        //     show.genres = newGenres;
+        // })
     }
 
     return (

@@ -26,7 +26,7 @@ export function Movie(id, title, posterURL, overview, rating, rating_count, rele
     this.last_date = null;
 }
 
-export function Series(id, title, posterURL, overview, rating, rating_count, first_air_date, genre_ids, status, season, episode) {
+export function Series(id, title, posterURL, overview, rating, rating_count, first_air_date, genres, status, season, episode) {
     this.id = id;
     this.title = title;
     this.posterURL = posterURL;
@@ -34,11 +34,11 @@ export function Series(id, title, posterURL, overview, rating, rating_count, fir
     this.rating = rating;
     this.rating_count = rating_count;
     this.first_air_date = first_air_date;
-    this.genre_ids = genre_ids;
+    //this.genre_ids = genre_ids;
     this.status = status;
     this.season = season;
     this.episode = episode;
-    this.genres = [];
+    this.genres = genres;
     this.last_date = null;
 }
 

@@ -30,6 +30,7 @@ function App() {
     const [movieGenres, setMovieGenres] = useState([]);
     const [gameGenres, setGameGenres] = useState([]);
     const [seriesGenres, setSeriesGenres] = useState([]);
+    const [genresLoaded, setGenresLoaded] =useState(false);
 
     const date = new Date();
     const currentDate = new Date().toJSON().slice(0, 10);
@@ -46,14 +47,28 @@ function App() {
         //getMovieGenres(); //only need to do once ever to get them into the DB
         //getGameGenres(); //only need to do once ever to get them into the DB
         //getSeriesGenres(); //only need to do once ever to get them into the DB
-        getMovieGenresfromDB();
-        getGameGenresfromDB();
-        getSeriesGenresfromDB();
-        getRecentGames();
-        getNowPlaying();
-        getBooks();
-        getPopularSeries();
+        // getMovieGenresfromDB();
+        // getGameGenresfromDB();
+        // getSeriesGenresfromDB();
+
+        const fetchGenres = async () => {
+            await getMovieGenresfromDB();
+            await getGameGenresfromDB();
+            await getSeriesGenresfromDB();
+            setGenresLoaded(true);
+        };
+        fetchGenres();
+
     }, []);
+
+    useEffect(() => {
+        if (genresLoaded){
+            getRecentGames();
+            getNowPlaying();
+            getBooks();
+            getPopularSeries();
+        }
+    }, [genresLoaded])
 
     const getRecentGames = () => {
 
@@ -102,10 +117,11 @@ function App() {
           .request(options)
           .then(response =>{
             let movieArray = response.data.results.map((movie) => {
+
                 const newMovieGenres = movie.genre_ids.map(id =>
                     movieGenres.find(genre => genre.id === id)
                 ).filter(genre => genre);
-            //console.log(newGenres);
+
               return new Movie(movie.id, movie.title, `https://image.tmdb.org/t/p/w200${movie.poster_path}`,
                   movie.overview, (movie.vote_average/2.5)+1, movie.vote_count, movie.release_date, newMovieGenres,
                   null)
@@ -140,9 +156,15 @@ function App() {
           .then(response =>{
             //console.log(response.data.results);
             let seriesArray = response.data.results.map((show) => {
+
+                const newSeriesGenres = show.genre_ids.map(id =>
+                    seriesGenres.find(genre => genre.id === id)
+                ).filter(genre => genre);
+                //console.log(newSeriesGenres);
+
               return new Series(show.id, show.name, `https://image.tmdb.org/t/p/w200${show.poster_path}`,
-                  show.overview, (show.vote_average/2.5)+1, show.vote_count, show.first_air_date, show.genre_ids,
-                  null, null, null)
+                  show.overview, (show.vote_average/2.5)+1, show.vote_count, show.first_air_date, newSeriesGenres,
+                  null, 1, 1)
             });
             setPopSeries(seriesArray);
           })
