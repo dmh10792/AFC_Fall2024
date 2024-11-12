@@ -27,7 +27,7 @@ const MovieCard = ({movie}) => {
     const handleAdd = () => {
         movie.status = "Backlog"
         movie.last_date = new Date().toJSON().slice(0, 10);
-        console.log(movie);
+        //console.log(movie);
         saveMovie(movie)
             .then(() => alert("Movie added to backlog."));
     }

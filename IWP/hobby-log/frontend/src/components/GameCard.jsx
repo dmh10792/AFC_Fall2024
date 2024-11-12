@@ -127,7 +127,7 @@ const GameCard = ({game}) => {
 
             </Card>
 
-            <GamePage isOpen={pageOpen} handleClose={handleClose}/>
+            <GamePage  game={game} isOpen={pageOpen} handleClose={handleClose}/>
         </>
     )
 }

@@ -194,6 +194,7 @@ function App() {
           .request(options)
           .then(res => {
               let temp = res.data.genres;
+              //console.log(temp);
               temp.forEach((genre) => {
                   saveMovieGenre(genre);
               })
