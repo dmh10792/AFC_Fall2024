@@ -17,3 +17,7 @@ export const getAllGames = () => {
     return axios.get('/api/game')
             .then(response => response.data);
 }
+
+export const updateGame = (game) => {
+  return axios.put(`/api/game/${game.id}`, game);
+}

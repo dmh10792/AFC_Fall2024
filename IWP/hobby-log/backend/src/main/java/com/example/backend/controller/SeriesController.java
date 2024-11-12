@@ -32,4 +32,10 @@ public class SeriesController {
     public ResponseEntity<List<Series>> getAllSeries() {
         return ResponseEntity.ok(seriesService.getAll());
     }
+
+    @PutMapping("/{seriesId}")
+    public ResponseEntity<Series> updateSeries(@RequestBody Series series, @PathVariable Long seriesId) {
+        return ResponseEntity.ok(seriesService.updateSeries(series, seriesId));
+    }
+
 }

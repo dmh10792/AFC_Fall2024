@@ -12,3 +12,7 @@ export const getAllMovies = () => {
     return axios.get('/api/movie')
             .then(response => response.data);
 }
+
+export const updateMovie = (movie) => {
+  return axios.put(`/api/movie/${movie.id}`, movie);
+}

@@ -29,4 +29,11 @@ public class MovieService {
     public List<Movie> getAll() {
         return movieRepository.findAll();
     }
+
+    public Movie updateMovie(Movie newMovie, Long movieId) {
+        Movie movie = movieRepository.findById(movieId).orElse(newMovie);
+        movie.setStatus(newMovie.getStatus());
+        movie.setLast_date(newMovie.getLast_date());
+        return movieRepository.save(movie);
+    }
 }

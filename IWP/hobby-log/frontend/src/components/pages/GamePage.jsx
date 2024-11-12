@@ -1,6 +1,6 @@
 //UTILITY
 import {useState, useEffect} from "react";
-import {saveGame} from '../../clients/GameClient.js'
+import {saveGame, updateGame} from '../../clients/GameClient.js'
 
 //COMPONENTS
 import Button from '@mui/material/Button';
@@ -18,6 +18,9 @@ import Carousel from 'react-material-ui-carousel'
 import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 
 //CSS
 
@@ -33,6 +36,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 const GamePage = ({game, isOpen, handleClose}) => {
 
     const [buttonText, setButtonText] = useState();
+    const [status, setStatus] = useState(game.status || "Backlog");
 
     useEffect(() => {
         if(game.status === null) {
@@ -44,7 +48,7 @@ const GamePage = ({game, isOpen, handleClose}) => {
 
     const handleClick = () => {
         if (game.status === null) {
-            game.status = "Backlog"
+            game.status = status;
             game.last_date = new Date().toJSON().slice(0, 10);
             saveGame(game)
                 .then(() => {
@@ -52,8 +56,20 @@ const GamePage = ({game, isOpen, handleClose}) => {
                     alert("Game added to your backlog.")
                 });
         } else {
-            //call the update method
+            //set the game status to the current status
+            game.status = status;
+            //change the last interaction date
+            game.last_date = new Date().toJSON().slice(0, 10);
+            //call the update method with the game
+            updateGame(game).then(() => {
+                handleClose();
+                alert("Game Updated.")
+            });
         }
+    }
+
+    const handleChange = (event) => {
+        setStatus(event.target.value);
     }
 
     return (
@@ -63,7 +79,19 @@ const GamePage = ({game, isOpen, handleClose}) => {
         open={isOpen}
         maxWidth="lg"
         >
-            <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+            <DialogTitle sx={{ m: 0, p: 2, textAlign: 'center' }} id="customized-dialog-title">
+                <img
+                    src={game.coverImageURL}
+                    style={
+                        {
+                            display: 'block',
+                            margin: 'auto',
+                            marginBottom: '10px',
+                            width: '750px',
+                            height: '430px'
+                        }
+                    }
+                />
                 {game.name}
                 <Gamepad sx={{margin: "0px 10px"}}/>
             </DialogTitle>
@@ -122,6 +150,16 @@ const GamePage = ({game, isOpen, handleClose}) => {
                 />
             </DialogContent>
             <DialogActions>
+
+                <InputLabel id="status">Status:</InputLabel>
+                <Select id="status" value={status} onChange={handleChange} defaultValue={status}>
+                    <MenuItem value={"Backlog"}>Backlog</MenuItem>
+                    <MenuItem value={"Now Playing"}>Now Playing</MenuItem>
+                    <MenuItem value={"Next Up"}>Next Up</MenuItem>
+                    <MenuItem value={"Completed"}>Completed</MenuItem>
+                    <MenuItem value={"Cancelled"}>Cancelled</MenuItem>
+                </Select>
+
               <Button autoFocus onClick={handleClick}>
                   {buttonText}
               </Button>

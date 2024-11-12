@@ -31,6 +31,7 @@ public class GameService {
     public Game updateGame(Game newGame, Long gameId) {
         Game game = gameRepository.findById(gameId).orElse(newGame);
         game.setStatus(newGame.getStatus());
+        game.setLast_date(newGame.getLast_date());
         return gameRepository.save(game);
     }
 }

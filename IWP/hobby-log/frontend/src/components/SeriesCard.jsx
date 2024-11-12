@@ -24,8 +24,8 @@ const SeriesCard = ({show}) => {
 
     const [pageOpen, setPageOpen] = useState(false);
     const rating = show.rating;
-    const season = show.season || 2;
-    const episode = show.episode || 6;
+    const season = show.season || 0;
+    const episode = show.episode || 0;
 
     const handleAdd = () => {
         show.status = "Backlog"
@@ -86,18 +86,19 @@ const SeriesCard = ({show}) => {
                         <RemoveCircleOutlinedIcon aria-label='delete-icon' className='deleteButton' />
                       </IconButton>
 
-                        <Chip label={`Season: ${season}`} variant="outlined" color='primary' sx={{width: '90px', marginRight: '10px'}}/>
-                      <Chip label={`Episode: ${episode}`} variant="outlined" color='primary' sx={{width: '90px'}}/>
+                      {show.status && <Chip label={`S: ${season} E: ${episode}`} variant="outlined" color='primary'
+                             sx={{width: '90px', marginRight: '10px'}}/>}
+                      {show.status && <Chip label={`${show.status}`} variant="outlined" color='primary' sx={{width: '90px'}}/>}
 
                       <IconButton aria-label="add" onClick={handleAdd} sx={{marginLeft: '20px'}}>
-                        <AddCircleOutlinedIcon aria-label='add-icon' className='addbutton' />
+                          <AddCircleOutlinedIcon aria-label='add-icon' className='addbutton' />
                       </IconButton>
                 </Box>
               </Box>
 
             </Card>
 
-            <SeriesPage isOpen={pageOpen} handleClose={handleClose}/>
+            <SeriesPage show={show} isOpen={pageOpen} handleClose={handleClose}/>
         </>
     )
 }

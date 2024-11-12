@@ -37,6 +37,11 @@ const GameCard = ({game}) => {
     }, []);
 
     const handleAdd = () => {
+        if (game.status !== null) {
+            alert("Game is already in your backlog");
+            return;
+        }
+
         game.status = "Backlog"
         game.last_date = new Date().toJSON().slice(0, 10);
         saveGame(game)

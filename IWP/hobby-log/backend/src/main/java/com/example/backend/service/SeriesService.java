@@ -27,4 +27,13 @@ public class SeriesService {
     public List<Series> getAll() {
         return seriesRepository.findAll();
     }
+
+    public Series updateSeries(Series newSeries, Long seriesId) {
+        Series series = seriesRepository.findById(seriesId).orElse(newSeries);
+        series.setStatus(newSeries.getStatus());
+        series.setSeason(newSeries.getSeason());
+        series.setEpisode(newSeries.getEpisode());
+        series.setLast_date(newSeries.getLast_date());
+        return seriesRepository.save(series);
+    }
 }

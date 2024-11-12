@@ -1,4 +1,6 @@
 //UTILITY
+import {deleteMovie, saveMovie} from "../clients/MovieClient.js";
+import {useState} from "react";
 
 //COMPONENTS
 import Box from '@mui/material/Box';
@@ -13,8 +15,6 @@ import MovieIcon from '@mui/icons-material/Movie';
 import Chip from '@mui/material/Chip';
 import Rating from '@mui/material/Rating';
 import Carousel from "react-material-ui-carousel";
-import {deleteMovie, saveMovie} from "../clients/MovieClient.js";
-import {useState} from "react";
 import MoviePage from "./pages/MoviePage.jsx";
 
 //CSS
@@ -85,7 +85,7 @@ const MovieCard = ({movie}) => {
                         <RemoveCircleOutlinedIcon aria-label='delete-icon' className='deleteButton' />
                       </IconButton>
 
-                      {movie.status && <Chip label="Watched" variant="outlined" color='primary' sx={{width: '100px'}}/>}
+                      {movie.status && <Chip label={movie.status} variant="outlined" color='primary' sx={{width: '100px'}}/>}
 
                       <IconButton aria-label="add" onClick={handleAdd} sx={{marginLeft: '50px'}}>
                         <AddCircleOutlinedIcon aria-label='add-icon' className='addbutton' />
@@ -95,7 +95,7 @@ const MovieCard = ({movie}) => {
 
             </Card>
 
-            <MoviePage isOpen={pageOpen} handleClose={handleClose}/>
+            <MoviePage movie={movie} isOpen={pageOpen} handleClose={handleClose}/>
         </>
     )
 }

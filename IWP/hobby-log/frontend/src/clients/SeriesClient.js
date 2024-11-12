@@ -12,3 +12,7 @@ export const getAllSeries = () => {
     return axios.get('/api/series')
             .then(response => response.data);
 }
+
+export const updateSeries = (series) => {
+  return axios.put(`/api/series/${series.id}`, series);
+}
