@@ -5,12 +5,17 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import {styled} from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import CloseIcon from '@mui/icons-material/Close';
+import {useEffect, useState} from "react";
+import {saveBook, updateBook} from "../../clients/BookClient.js";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
 
 //CSS
 
@@ -23,51 +28,126 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-const BookPage = ({isOpen, handleClose}) => {
+const BookPage = ({book, isOpen, handleClose}) => {
+
+    const [buttonText, setButtonText] = useState();
+    const [status, setStatus] = useState(book.status || "Backlog");
+    const [page, setPage] = useState(book.page || 1);
+
+    useEffect(() => {
+        if(book.status === null) {
+            setButtonText("Add");
+        } else {
+            setButtonText("Save");
+        }
+    },[]);
+
+    const handleClick = () => {
+        if (book.status === null) {
+            book.status = status;
+            book.page = page;
+            book.last_date = new Date().toJSON().slice(0, 10);
+            saveBook(book)
+                .then(() => {
+                    handleClose();
+                    alert("Book added to your backlog.")
+                });
+        } else {
+            book.status = status;
+            book.page = page;
+            book.last_date = new Date().toJSON().slice(0, 10);
+            updateBook(book).then(() => {
+                handleClose();
+
+                alert("Book Updated.")
+            });
+        }
+    }
+
+    const handleStatusChange = (event) => {
+        setStatus(event.target.value);
+    }
+
+    const handlePageChange = (event) => {
+        setPage(event.target.value);
+    }
 
     return (
-        <BootstrapDialog
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={isOpen}
+        <Dialog
+            onClose={handleClose}
+            aria-labelledby="customized-dialog-title"
+            open={isOpen}
+            maxWidth="xl"
         >
-            <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-              Book title
+            <DialogTitle sx={{m: 0, p: 2, textAlign: 'center'}} id="customized-dialog-title">
+                <img
+                    src={book.imageURL}
+                    style={
+                        {
+                            display: 'block',
+                            margin: 'auto',
+                            marginBottom: '10px',
+                            width: '100px'
+                        }
+                    }
+                />
+                {book.title}
+                <MenuBookIcon sx={{margin: "0px 10px"}}/>
             </DialogTitle>
             <IconButton
-              aria-label="close"
-              onClick={handleClose}
-              sx={(theme) => ({
-                position: 'absolute',
-                right: 8,
-                top: 8,
-                color: theme.palette.grey[500],
-              })}
+                aria-label="close"
+                onClick={handleClose}
+                sx={(theme) => ({
+                    position: 'absolute',
+                    right: 8,
+                    top: 8,
+                    color: theme.palette.grey[500],
+                })}
             >
-              <CloseIcon />
+                <CloseIcon/>
             </IconButton>
             <DialogContent dividers>
-              <Typography gutterBottom>
-                Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                consectetur ac, vestibulum at eros.
-              </Typography>
-              <Typography gutterBottom>
-                Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-                Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-              </Typography>
-              <Typography gutterBottom>
-                Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
-                magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
-                ullamcorper nulla non metus auctor fringilla.
-              </Typography>
+                <Typography gutterBottom>
+                    {book.description}
+                </Typography>
+                <Typography
+                    sx={{fontSize: 'small', paddingTop: '10px', display: 'inline'}}
+                >
+                    Published: {book.publish_date}
+                </Typography>
+                <a href={book.link} target="_blank">
+                    <Button variant="contained" size='small' sx={{display: 'inline', marginTop: '22px', float: 'right'}}>View</Button>
+                </a>
             </DialogContent>
             <DialogActions>
-              <Button autoFocus onClick={handleClose}>
-                Save changes
-              </Button>
+
+                <InputLabel id="page">Page:</InputLabel>
+                <input
+                    type="number"
+                    className="page"
+                    onChange={handlePageChange}
+                    value={page}
+                    min={0}
+                    max={book.length}
+                    style={{
+                        width: '50px',
+                        margin: '10px'
+                    }}
+                />
+
+                <InputLabel id="status">Status:</InputLabel>
+                <Select id="status" value={status} onChange={handleStatusChange} defaultValue={status}>
+                    <MenuItem value={"Backlog"}>Backlog</MenuItem>
+                    <MenuItem value={"Reading"}>Reading</MenuItem>
+                    <MenuItem value={"Up Next"}>Up Next</MenuItem>
+                    <MenuItem value={"Finished"}>Finished</MenuItem>
+                </Select>
+
+                <Button autoFocus onClick={handleClick}>
+                    {buttonText}
+                </Button>
             </DialogActions>
-        </BootstrapDialog>
+        </Dialog>
     )
 }
 

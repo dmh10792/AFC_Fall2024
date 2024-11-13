@@ -27,4 +27,12 @@ public class BookService {
     public List<Book> getAll() {
         return bookRepository.findAll();
     }
+
+    public Book updateBook(Book newBook, Long id) {
+        Book book = bookRepository.findById(id).get();
+        book.setStatus(newBook.getStatus());
+        book.setPage(newBook.getPage());
+        book.setLast_date(newBook.getLast_date());
+        return bookRepository.save(book);
+    }
 }

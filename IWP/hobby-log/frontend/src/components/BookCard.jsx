@@ -84,14 +84,16 @@ const BookCard = ({book}) => {
                 </CardContent>
 
                   <Box sx={{ display: 'block', alignItems: 'center', pl: 1, pb: 1 }}>
-                      <IconButton aria-label="remove" onClick={handleDelete} sx={{marginRight: '50px'}}>
+                      <IconButton aria-label="remove" onClick={handleDelete} sx={{marginRight: '20px'}}>
                         <RemoveCircleOutlinedIcon aria-label='delete-icon' className='deleteButton' />
                       </IconButton>
 
                         <Chip
-                            label={pageString} variant="outlined" color='primary' sx={{width: '100px'}}/>
+                            label={pageString} variant="outlined" color='primary' sx={{width: '100px', marginRight: '10px'}}/>
 
-                      <IconButton aria-label="add" onClick={handleAdd} sx={{marginLeft: '50px'}}>
+                        {book.status && <Chip label={`${book.status}`} variant="outlined" color='primary' sx={{width: '90px'}}/>}
+
+                      <IconButton aria-label="add" onClick={handleAdd} sx={{marginLeft: '20px'}}>
                         <AddCircleOutlinedIcon aria-label='add-icon' className='addbutton' />
                       </IconButton>
                 </Box>
@@ -99,7 +101,7 @@ const BookCard = ({book}) => {
 
             </Card>
 
-            <BookPage isOpen={pageOpen} handleClose={handleClose}/>
+            <BookPage book={book} isOpen={pageOpen} handleClose={handleClose}/>
         </>
 
     )

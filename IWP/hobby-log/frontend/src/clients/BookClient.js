@@ -12,3 +12,7 @@ export const getAllBooks = () => {
     return axios.get('/api/book')
             .then(response => response.data);
 }
+
+export const updateBook = (book) => {
+    return axios.put(`/api/book/${book.id}`, book);
+}
